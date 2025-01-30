@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
@@ -37,11 +38,11 @@ const RoomDetails = () => {
   }
   const paramId = Number(searchParams.get("id"));
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Header />
       <RoomDetailSection room={findRoomById(paramId) as Room} discount={20} />
       <Footer />
-    </>
+    </Suspense>
   );
 };
 
