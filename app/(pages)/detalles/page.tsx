@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
@@ -24,25 +23,29 @@ type Room = {
     };
   };
 };
+
 const RoomDetails = () => {
   const searchParams = useSearchParams();
+  const paramId = Number(searchParams.get("id"));
 
   function findRoomById(roomId: number) {
     for (const category of roomData) {
-      const room = category.rooms.find((r) => r.id === Number(roomId));
+      const room = category.rooms.find((r) => r.id === roomId);
       if (room) {
         return room;
       }
     }
     return null;
   }
-  const paramId = Number(searchParams.get("id"));
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Header />
-      <RoomDetailSection room={findRoomById(paramId) as Room} discount={20} />
-      <Footer />
-    </Suspense>
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header />
+        <RoomDetailSection room={findRoomById(paramId) as Room} discount={20} />
+        <Footer />
+      </Suspense>
+    </>
   );
 };
 
