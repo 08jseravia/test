@@ -117,14 +117,14 @@ const Footer = () => {
       <div className="border-t-[1px] border-[#e5e5e5] py-[40px] relative z-10 bg-[#52476d]">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap md:justify-between justify-center items-center gap-[30px]">
-            {footerLogos?.map((itm, index) => (
-              <div key={`footer-key-${index}`}>
+            {footerLogos?.map((itm) => (
+              <div key={itm.id}>  // Use a unique property like itm.id if available
                 <Link href={itm.link}>
                   <img
                     src={itm.img}
                     height={100}
                     width={100}
-                    alt={`Logo ${index}`}  // Don't forget to add an alt attribute for accessibility
+                    alt={`Logo ${itm.id}`}  // Use a more descriptive alt text
                   />
                 </Link>
               </div>
