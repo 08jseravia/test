@@ -40,13 +40,17 @@ const RoomDetails = () => {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Header />
-        <RoomDetailSection room={findRoomById(paramId) as Room} discount={20} />
-        <Footer />
-      </Suspense>
+      <Header />
+      <RoomDetailSection room={findRoomById(paramId) as Room} discount={20} />
+      <Footer />
     </>
   );
 };
 
-export default RoomDetails;
+const MainRoomDetails = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <RoomDetails />
+  </Suspense>
+);
+
+export default MainRoomDetails;
