@@ -4,8 +4,29 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
+<<<<<<< HEAD
 
 const RoomSlider = ({ roomData }) => {
+=======
+type Room = {
+  id: number;
+  name: string;
+  img: string[]; // Array of image URLs
+  desc: string; // Room description
+  person: number; // Number of people the room can accommodate
+  roomSize: string; // Room size as a string (e.g., "678 sqf | 63 m2")
+  prices: {
+    high: number; // High price
+    low: number; // Low price
+    Diciembre: number; // Price for December
+    range: {
+      low: string; // Low price range start date
+      high: string; // High price range end date
+    };
+  };
+};
+const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
+>>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
   return (
     <div className="container mx-auto px-4 py-8">
       <div

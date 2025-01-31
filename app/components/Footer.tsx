@@ -121,10 +121,17 @@ const Footer = () => {
               <div key={`footer-key-${index}`}>
                 <Link href={itm.link}>
                   <img
+<<<<<<< HEAD
                     src={`${itm.img}`}
                     height={100}
                     width={100}
                     alt={`Logo ${index}`}  // Optional: Add an alt attribute for accessibility
+=======
+                    key={`footer-logo-${index}`}
+                    src={`${itm.img}`}
+                    height={100}
+                    width={100}
+>>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
                   />
                 </Link>
               </div>

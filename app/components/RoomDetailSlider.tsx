@@ -5,7 +5,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 
+<<<<<<< HEAD
 const RoomDetailSlider = ({ images }) => {
+=======
+const RoomDetailSlider = ({ images }: { images: string[] }) => {
+>>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
   if (images?.length == 1)
     return (
       <div className="flex w-full justify-center mx-5 my-4">

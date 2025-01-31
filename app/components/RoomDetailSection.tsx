@@ -2,7 +2,35 @@ import React from "react";
 import RoomDetailSlider from "./RoomDetailSlider";
 import ReservationForm from "./ReservationForm";
 
+<<<<<<< HEAD
 const RoomDetailSection = ({ room, discount }) => {
+=======
+type Room = {
+  id: number;
+  name: string;
+  img: string[]; // Array of image URLs
+  desc: string; // Room description
+  person: number; // Number of people the room can accommodate
+  roomSize: string; // Room size as a string (e.g., "678 sqf | 63 m2")
+  prices: {
+    high: number; // High price
+    low: number; // Low price
+    Diciembre: number; // Price for December
+    range: {
+      low: string; // Low price range start date
+      high: string; // High price range end date
+    };
+  };
+};
+
+const RoomDetailSection = ({
+  room,
+  discount,
+}: {
+  room: Room;
+  discount: number;
+}) => {
+>>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
   function convertCurrencyToNumber(currencyString: string) {
     // Remove the dollar sign ($) and commas, then parse as a float
     const number = parseFloat(currencyString.replace(/[\$,]/g, ""));
