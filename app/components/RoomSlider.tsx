@@ -4,10 +4,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
-<<<<<<< HEAD
-
-const RoomSlider = ({ roomData }) => {
-=======
 type Room = {
   id: number;
   name: string;
@@ -26,7 +22,6 @@ type Room = {
   };
 };
 const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
   return (
     <div className="container mx-auto px-4 py-8">
       <div

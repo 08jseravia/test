@@ -2,18 +2,6 @@
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 
-<<<<<<< HEAD
-export default function ReservationForm({ room, discount }) {
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [price, setPrice] = useState(room?.prices?.high);
-  const [discountPrice, setDiscountPrice] = useState(0);
-  const [bookingDays, setBookingDays] = useState(1);
-  const [checkIn, setCheckIn] = useState(
-    `${new Date().toISOString().split("T")[0]}`
-  );
-  const [checkOut, setCheckOut] = useState(
-=======
 interface Room {
   prices: {
     high: number;
@@ -54,27 +42,18 @@ export default function ReservationForm({
     `${new Date().toISOString().split("T")[0]}`
   );
   const [checkOut, setCheckOut] = useState<string>(
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
     `${new Date().toISOString().split("T")[0]}`
   );
 
   useEffect(() => {
     setCheckIn(`${new Date().toISOString().split("T")[0]}`);
     setCheckOut(`${new Date().toISOString().split("T")[0]}`);
-<<<<<<< HEAD
-    setPrice(room?.prices?.high);
-    setDiscountPrice((prev) =>
-      discount && discount != null && discount != undefined
-        ? room?.prices?.high - (room?.prices?.high * discount) / 100
-        : room?.prices?.high
-=======
     setPrice(room?.prices?.high || 0); // Fallback if `high` price is undefined
     setDiscountPrice(
       (prev) =>
         discount && discount != null && discount != undefined
           ? room?.prices?.high - (room?.prices?.high * discount) / 100
           : room?.prices?.high || 0 // Ensuring fallback value if `high` is undefined
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
     );
   }, [room?.prices?.high]);
 
@@ -100,11 +79,7 @@ export default function ReservationForm({
         1
     );
     setBookingDays(days);
-<<<<<<< HEAD
-    const pricePerNight = room?.prices?.high;
-=======
     const pricePerNight = room?.prices?.high || 0; // Ensure fallback value
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
     const totalPrice = days * pricePerNight;
 
     // Apply discount if available
@@ -121,13 +96,8 @@ export default function ReservationForm({
     updatePrice();
   }, [checkIn, checkOut, discount]);
 
-<<<<<<< HEAD
-  const validateForm = (formData) => {
-    const newErrors = {};
-=======
   const validateForm = (formData: Reservation) => {
     const newErrors: FormErrors = {};
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
 
     // Check In Date Validation
     if (!formData.check__in) {
@@ -166,19 +136,6 @@ export default function ReservationForm({
     return newErrors;
   };
 
-<<<<<<< HEAD
-  const handleSubmit = async (e) => {
-    setLoading((prev) => true);
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const formValues = Object.fromEntries(formData.entries());
-
-    const validationErrors = validateForm(formValues);
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setLoading((prev) => false);
-=======
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
@@ -190,7 +147,6 @@ export default function ReservationForm({
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setLoading(false);
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
       return;
     }
     setErrors({});
@@ -198,11 +154,7 @@ export default function ReservationForm({
     await new Promise((resolve) => setTimeout(resolve, 1500));
     // If no errors, submit the form
     console.log("Form submitted successfully:", formValues);
-<<<<<<< HEAD
-    setLoading((prev) => false);
-=======
     setLoading(false);
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
     // You can add your form submission logic here (e.g., API call)
   };
 
@@ -342,53 +294,16 @@ export default function ReservationForm({
         {/* Discount */}
         <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
           <span className="total h6 mb-0 text-heading">Descuento</span>
-<<<<<<< HEAD
-          <span id="price" className="price h6 m-0 text-heading text-red-500">
-            {discount ?? 0}%
-          </span>
-        </div>
-
-        {/* Total Price with Discount */}
-        <div className="total__price flex justify-between border-t-[1px] border-[#e5e5e5]">
-          <span className="total h6 mb-0 text-heading">Precio Total</span>
-          <span
-            id="price"
-            className="price h6 m-0 text-heading text-green-500 bold underline"
-          >
-            {new Intl.NumberFormat("es-MX", {
-              style: "currency",
-              currency: "MXN",
-            }).format(discountPrice)}
-=======
           <span id="price" className="price h6 m-0 text-heading text-[#f53d3d]">
             {discountPrice &&
               new Intl.NumberFormat("es-MX", {
                 style: "currency",
                 currency: "MXN",
               }).format(discountPrice)}
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
           </span>
         </div>
 
         {/* Submit Button */}
-<<<<<<< HEAD
-        <button
-          type="submit"
-          className="!py-3 rounded-[6px] bg-[#00beba]"
-          data-wow-delay=".6s"
-          style={{
-            visibility: "visible",
-            animationDelay: "0.6s",
-            animationName: "fadeInUp",
-          }}
-          disabled={loading}
-        >
-          <div className="flex justify-center items-center">
-            {loading && <ClipLoader size={20} color="white" />}
-            <span className="text-white ml-2">Reserva tu Habitación</span>
-          </div>
-        </button>
-=======
         <div className="flex justify-center pt-4 pb-6">
           <button
             type="submit"
@@ -402,7 +317,6 @@ export default function ReservationForm({
             )}
           </button>
         </div>
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
       </div>
     </form>
   );

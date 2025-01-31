@@ -1,8 +1,4 @@
 import Link from "next/link";
-<<<<<<< HEAD
-
-const RoomsGrid = ({ rooms }) => {
-=======
 type Room = {
   id: number;
   name: string;
@@ -21,7 +17,6 @@ type Room = {
   };
 };
 const RoomsGrid = ({ rooms }: { rooms: Room[] }) => {
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
   let formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",

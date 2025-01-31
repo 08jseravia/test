@@ -2,9 +2,6 @@ import React from "react";
 import RoomDetailSlider from "./RoomDetailSlider";
 import ReservationForm from "./ReservationForm";
 
-<<<<<<< HEAD
-const RoomDetailSection = ({ room, discount }) => {
-=======
 type Room = {
   id: number;
   name: string;
@@ -30,7 +27,6 @@ const RoomDetailSection = ({
   room: Room;
   discount: number;
 }) => {
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
   function convertCurrencyToNumber(currencyString: string) {
     // Remove the dollar sign ($) and commas, then parse as a float
     const number = parseFloat(currencyString.replace(/[\$,]/g, ""));

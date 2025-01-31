@@ -1,23 +1,11 @@
 "use client";
-<<<<<<< HEAD
-import React from "react";
-=======
 import React, { Suspense } from "react";
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
 import { useSearchParams } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import RoomDetailSection from "@/app/components/RoomDetailSection";
 import { roomData } from "@/app/components/room";
 
-<<<<<<< HEAD
-const RoomDetails = () => {
-  const searchParams = useSearchParams();
-
-  function findRoomById(roomId: number) {
-    for (const category of roomData) {
-      const room = category.rooms.find((r) => r.id === Number(roomId));
-=======
 type Room = {
   id: number;
   name: string;
@@ -43,34 +31,22 @@ const RoomDetails = () => {
   function findRoomById(roomId: number) {
     for (const category of roomData) {
       const room = category.rooms.find((r) => r.id === roomId);
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
       if (room) {
         return room;
       }
     }
     return null;
   }
-<<<<<<< HEAD
-  const paramId = Number(searchParams.get("id"));
-  return (
-    <>
-      <Header />
-      <RoomDetailSection room={findRoomById(paramId)} discount={20} />
-=======
 
   return (
     <>
       <Header />
       <RoomDetailSection room={findRoomById(paramId) as Room} discount={20} />
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
       <Footer />
     </>
   );
 };
 
-<<<<<<< HEAD
-export default RoomDetails;
-=======
 const MainRoomDetails = () => (
   <Suspense fallback={<div>Loading...</div>}>
     <RoomDetails />
@@ -78,4 +54,3 @@ const MainRoomDetails = () => (
 );
 
 export default MainRoomDetails;
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8

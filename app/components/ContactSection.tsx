@@ -1,14 +1,4 @@
 "use client";
-<<<<<<< HEAD
-import React from "react";
-
-const ContactSection = () => {
-  return (
-    <div className="relative pb-[80px] lg:pb-[120px] mt-[40px]">
-      <div
-        className="relative h-[400px] lg:h-[700px] bg-cover bg-center bg-no-repeat flex items-center before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-heading before:opacity-60"
-        style={{ backgroundImage: "url(/asset/images/pages/header__bg.webp)" }}
-=======
 import React, { FormEvent, useState } from "react";
 
 const ContactSection = () => {
@@ -27,7 +17,6 @@ const ContactSection = () => {
       <div
         className="relative h-[400px] lg:h-[700px] bg-black bg-opacity-45 bg-cover bg-center justify-center bg-no-repeat flex items-center before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-black before:opacity-60"
         style={{ backgroundImage: "url(/assets/images/pages/header__bg.webp)" }}
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
       >
         <div className="container text-center text-white relative">
           <h1 className="heading text-white mb-[20px] text-[40px] lg:text-[70px] md:text-[60px] sm:text-[50px] leading-none">
@@ -39,8 +28,6 @@ const ContactSection = () => {
           </p>
         </div>
       </div>
-<<<<<<< HEAD
-=======
 
       {/* Popup Form */}
       {isPopupVisible && (
@@ -131,7 +118,6 @@ const ContactSection = () => {
       )}
 
       {/* Contact Content */}
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] items-center">
           {/* Contact Form */}
@@ -201,11 +187,7 @@ const ContactSection = () => {
                           className="absolute top-[20%] left-[15px]"
                           width="20"
                           height="20"
-<<<<<<< HEAD
-                          alt=""
-=======
                           alt="Message Icon"
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
                         />
                       </div>
                     </div>
@@ -228,11 +210,8 @@ const ContactSection = () => {
               width="100%"
               height="100%"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4421.377185760186!2d-86.85737292416115!3d20.898152992250456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4e874cc983d8af%3A0x47ed01bb620ec243!2sMargaritaville%20Island%20Reserve%20Riviera%20Maya!5e1!3m2!1sen!2sbz!4v1734943841779!5m2!1sen!2sbz"
-<<<<<<< HEAD
-=======
               title="Hotel Location"
               allowFullScreen
->>>>>>> f5fcb170dab795220f77ae3e30ad42d616c5a9e8
             ></iframe>
           </div>
           {/* End Map */}
