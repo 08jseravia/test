@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 
 interface Room {
+  person: number;
   prices: {
     high: number;
     low: number;
@@ -56,6 +57,8 @@ export default function ReservationForm({
           : room?.prices?.high || 0 // Ensuring fallback value if `high` is undefined
     );
   }, [room?.prices?.high]);
+
+  const options = Array.from({ length: room?.person }, (_, index) => index + 1);
 
   const updatePrice = () => {
     if (!checkIn || !checkOut) {
@@ -229,8 +232,11 @@ export default function ReservationForm({
               id="adult"
               className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
             >
-              <option value="1">1 Persona</option>
-              <option value="2">2 Persona</option>
+              {options.map((option) => (
+                <option key={option} value={option}>
+                  {option} Persona{option > 1 ? "s" : ""}
+                </option>
+              ))}
             </select>
             {errors.adult && (
               <p className="text-red-500 text-sm">{errors.adult}</p>
@@ -307,7 +313,7 @@ export default function ReservationForm({
         <div className="flex justify-center pt-4 pb-6">
           <button
             type="submit"
-            className="bg-primary text-white p-2 rounded-md w-full"
+            className="bg-[#00beba] text-white p-2 rounded-md w-full"
             disabled={loading}
           >
             {loading ? (
