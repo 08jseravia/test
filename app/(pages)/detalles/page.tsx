@@ -41,7 +41,7 @@ const RoomDetails = () => {
   return (
     <>
       <Header />
-      <RoomDetailSection room={findRoomById(paramId) as Room} discount={20} />
+      <RoomDetailSection room={findRoomById(paramId) as Room} discount={25} />
       <Footer />
     </>
   );
