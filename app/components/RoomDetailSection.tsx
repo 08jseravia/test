@@ -67,7 +67,7 @@ const RoomDetailSection = ({
                 style={{ fontFamily: "Rubik" }}
               >
                 <i className="flaticon-user"></i>
-                {room?.person} Personas
+                {room?.person} Huéspedes
               </span>
             </div>
 
