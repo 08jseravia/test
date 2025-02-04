@@ -119,14 +119,12 @@ const Footer = () => {
           <div className="flex flex-wrap md:justify-between justify-center items-center gap-[30px]">
             {footerLogos?.map((itm, index) => (
               <div key={`footer-key-${index}`}>
-                <Link href={itm.link}>
-                  <img
-                    key={`footer-logo-${index}`}
-                    src={`${itm.img}`}
-                    height={100}
-                    width={100}
-                  />
-                </Link>
+                <img
+                  key={`footer-logo-${index}`}
+                  src={`${itm.img}`}
+                  height={100}
+                  width={100}
+                />
               </div>
             ))}
           </div>
