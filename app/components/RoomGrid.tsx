@@ -66,7 +66,7 @@ const RoomsGrid = ({ rooms }: { rooms: Room[] }) => {
                   </span>
                   <span className="flex gap-2" style={{ fontFamily: "Rubik" }}>
                     <i className="flaticon-user"></i>
-                    {room.person}
+                    {room.person} Huéspedes
                   </span>
                 </div>
                 <p
