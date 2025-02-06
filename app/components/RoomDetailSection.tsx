@@ -44,7 +44,8 @@ const RoomDetailSection = ({
               {new Intl.NumberFormat("es-MX", {
                 style: "currency",
                 currency: "MXN",
-              }).format(room?.prices?.high)}
+              }).format(room?.prices?.high)}{" "}
+              MXN
             </span>
             <h2
               className="heading text-4xl lg:text-5xl mt-[15px]"
