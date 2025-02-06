@@ -39,6 +39,7 @@ export default function ReservationForm({
   const [price, setPrice] = useState<number>(room?.prices?.high || 0); // Ensuring number type
   const [discountPrice, setDiscountPrice] = useState<number>(0); // Ensuring number type
   const [bookingDays, setBookingDays] = useState(1);
+  const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [checkIn, setCheckIn] = useState<string>(
     `${new Date().toISOString().split("T")[0]}`
   );
@@ -231,6 +232,7 @@ export default function ReservationForm({
               name="adult"
               id="adult"
               className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
+              onChange={(e) => setNumberOfPeople(Number(e.target?.value))}
             >
               {options.map((option) => (
                 <option key={option} value={option}>
@@ -293,19 +295,33 @@ export default function ReservationForm({
             {new Intl.NumberFormat("es-MX", {
               style: "currency",
               currency: "MXN",
-            }).format(price * bookingDays)}
+            }).format(price * bookingDays * numberOfPeople)}{" "}
+            MXN
+          </span>
+        </div>
+        {/* Discount Percent*/}
+        <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
+          <span className="total h6 mb-0 text-heading">Descuento</span>
+          <span id="price" className="price h6 m-0 text-heading text-green-600">
+            {discount}%
           </span>
         </div>
 
         {/* Discount */}
         <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
-          <span className="total h6 mb-0 text-heading">Descuento</span>
-          <span id="price" className="price h6 m-0 text-heading text-[#f53d3d]">
+          <span className="total h6 mb-0 text-heading">Precio Total</span>
+          <span
+            id="price"
+            className="price h6 m-0 text-heading text-[#f53d3d] underline"
+          >
             {discountPrice &&
               new Intl.NumberFormat("es-MX", {
                 style: "currency",
                 currency: "MXN",
-              }).format(discountPrice)}
+              })
+                .format(discountPrice * numberOfPeople)
+                .replace(".", ",")}{" "}
+            MXN
           </span>
         </div>
 
