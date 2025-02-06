@@ -80,8 +80,10 @@ const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
                     </div>
                     <div className="mt-auto">
                       <p className="text-gray-700">
-                        <span className="font-bold">Price:</span> $
-                        {room.prices.low} - ${room.prices.high}
+                        <span className="font-bold">Price:</span>
+                        <span className="ml-2 text-[#b69a77]">
+                          ${room.prices.low} - ${room.prices.high} MXN
+                        </span>
                       </p>
                     </div>
                   </div>
