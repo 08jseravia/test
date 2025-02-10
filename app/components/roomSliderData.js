@@ -169,7 +169,7 @@ const roomData = [
     name: "Queen Paradise Room",
     img: ["assets/images/room/queen-paradise-room-room.webp"],
     desc: "Estas suites están ubicadas en el segundo, tercer y cuarto piso del hotel y ofrecen dos camas tamaño Queen y una mesa para dos personas. La terraza cuenta con mesa y dos sillas. Disponibles suites que conectan.",
-    person: 2,
+    person: 3,
     roomSize: "452 ft² | 42 m²",
     prices: {
       Diciembre: 6179,
