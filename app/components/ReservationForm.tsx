@@ -59,7 +59,10 @@ export default function ReservationForm({
     );
   }, [room?.prices?.high]);
 
-  const options = Array.from({ length: room?.person }, (_, index) => index + 1);
+  const options = Array.from(
+    { length: room?.person - 1 },
+    (_, index) => index + 2
+  );
 
   const updatePrice = () => {
     if (!checkIn || !checkOut) {
@@ -76,7 +79,6 @@ export default function ReservationForm({
     ) {
       return;
     }
-
     // Calculate the number of nights
     const days = Math.ceil(
       (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24) +
@@ -232,7 +234,7 @@ export default function ReservationForm({
               name="adult"
               id="adult"
               className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
-              onChange={(e) => setNumberOfPeople(Number(e.target?.value))}
+              onChange={(e) => setNumberOfPeople(Number(e.target?.value) - 1)}
             >
               {options.map((option) => (
                 <option key={option} value={option}>
