@@ -81,12 +81,19 @@ export default function ReservationForm({
     }
     // Calculate the number of nights
     const days = Math.ceil(
-      (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24) +
-        1
+      (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)
     );
     setBookingDays(days);
     const pricePerNight = room?.prices?.high || 0; // Ensure fallback value
-    const totalPrice = days * pricePerNight;
+    console.log(
+      "Days: ",
+      days,
+      "Price: ",
+      pricePerNight,
+      " People: ",
+      numberOfPeople
+    );
+    const totalPrice = days * pricePerNight * (numberOfPeople + 1);
 
     // Apply discount if available
     const finalPrice =
@@ -297,7 +304,7 @@ export default function ReservationForm({
             {new Intl.NumberFormat("es-MX", {
               style: "currency",
               currency: "MXN",
-            }).format(price * bookingDays * numberOfPeople)}{" "}
+            }).format(price * bookingDays * (numberOfPeople + 1))}{" "}
             MXN
           </span>
         </div>
@@ -321,7 +328,7 @@ export default function ReservationForm({
                 style: "currency",
                 currency: "MXN",
               })
-                .format(discountPrice * numberOfPeople)
+                .format(discountPrice * (numberOfPeople + 1))
                 .replace(".", ",")}{" "}
             MXN
           </span>
