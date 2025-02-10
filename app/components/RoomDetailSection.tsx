@@ -1,6 +1,7 @@
 import React from "react";
 import RoomDetailSlider from "./RoomDetailSlider";
 import ReservationForm from "./ReservationForm";
+import { checkDatePrice } from "../utils";
 
 type Room = {
   id: number;
@@ -44,7 +45,9 @@ const RoomDetailSection = ({
               {new Intl.NumberFormat("es-MX", {
                 style: "currency",
                 currency: "MXN",
-              }).format(room?.prices?.high)}{" "}
+              }).format(
+                checkDatePrice(room?.prices?.high, room?.prices?.low)
+              )}{" "}
               MXN
             </span>
             <h2

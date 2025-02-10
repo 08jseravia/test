@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
+import { checkDatePrice } from "../utils";
 type Room = {
   id: number;
   name: string;
@@ -83,7 +84,12 @@ const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
                       <p className="text-gray-700">
                         <span className="font-bold">Price:</span>
                         <span className="ml-2 text-[#b69a77]">
-                          ${room.prices.low} - ${room.prices.high} MXN
+                          $
+                          {checkDatePrice(
+                            room?.prices?.high,
+                            room?.prices?.low
+                          )}{" "}
+                          MXN
                         </span>
                       </p>
                     </div>

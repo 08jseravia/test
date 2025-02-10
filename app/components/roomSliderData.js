@@ -13,7 +13,7 @@ const roomData = [
     roomSize: "614 ft² | 57 m²",
     prices: {
       high: 10005,
-      low: 9099,
+      low: 9017,
       Diciembre: 13936,
       range: {
         low: "2025-04-13",
@@ -253,7 +253,6 @@ const roomData = [
     person: 2,
     roomSize: "474 ft² | 44 m²",
     prices: {
-      Diciembre: 7511,
       high: 7511,
       low: 6969,
       range: {
@@ -270,9 +269,8 @@ const roomData = [
     person: 2,
     roomSize: "452 ft² | 42 m²",
     prices: {
-      Diciembre: 7511,
-      high: 7511,
-      low: 6969,
+      high: 6694,
+      low: 6034,
       range: {
         low: "2025-06-20",
         high: "2025-08-20",

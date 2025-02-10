@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
+import { checkDatePrice } from "../utils";
 
 interface Room {
   person: number;
@@ -36,7 +37,9 @@ export default function ReservationForm({
 }) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
-  const [price, setPrice] = useState<number>(room?.prices?.high || 0); // Ensuring number type
+  const [price, setPrice] = useState<number>(
+    checkDatePrice(room?.prices?.high, room?.prices?.low) || 0
+  ); // Ensuring number type
   const [discountPrice, setDiscountPrice] = useState<number>(0); // Ensuring number type
   const [bookingDays, setBookingDays] = useState(1);
   const [numberOfPeople, setNumberOfPeople] = useState(1);
@@ -48,16 +51,11 @@ export default function ReservationForm({
   );
 
   useEffect(() => {
+    console.log("Setting");
     setCheckIn(`${new Date().toISOString().split("T")[0]}`);
     setCheckOut(`${new Date().toISOString().split("T")[0]}`);
-    setPrice(room?.prices?.high || 0); // Fallback if `high` price is undefined
-    setDiscountPrice(
-      (prev) =>
-        discount && discount != null && discount != undefined
-          ? room?.prices?.high - (room?.prices?.high * discount) / 100
-          : room?.prices?.high || 0 // Ensuring fallback value if `high` is undefined
-    );
-  }, [room?.prices?.high]);
+    setPrice(checkDatePrice(room?.prices?.high, room?.prices?.low) || 0); // Fallback if `high` price is undefined
+  }, []);
 
   const options = Array.from(
     { length: room?.person - 1 },
@@ -65,6 +63,7 @@ export default function ReservationForm({
   );
 
   const updatePrice = () => {
+    setBookingDays(1);
     if (!checkIn || !checkOut) {
       return;
     }
@@ -84,8 +83,21 @@ export default function ReservationForm({
       (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)
     );
     setBookingDays(days);
-    const pricePerNight = room?.prices?.high || 0; // Ensure fallback value
+
+    const pricePerNight =
+      checkDatePrice(room?.prices?.high, room?.prices?.low) || 0; // Ensure fallback value
+    const disPrice =
+      discount && discount != null && discount != undefined
+        ? checkDatePrice(room?.prices?.high, room?.prices?.low) -
+          (checkDatePrice(room?.prices?.high, room?.prices?.low) * discount) /
+            100
+        : checkDatePrice(room?.prices?.high, room?.prices?.low) || 0; // Ensuring fallback value if `high` is undefined
+    setDiscountPrice((prev) => disPrice);
+
+    const totalPrice = days * pricePerNight * (numberOfPeople + 1);
     console.log(
+      "Total Price: ",
+      totalPrice,
       "Days: ",
       days,
       "Price: ",
@@ -93,15 +105,14 @@ export default function ReservationForm({
       " People: ",
       numberOfPeople
     );
-    const totalPrice = days * pricePerNight * (numberOfPeople + 1);
-
+    setPrice((prev) => totalPrice);
     // Apply discount if available
     const finalPrice =
       discount && discount != null && discount != undefined
         ? totalPrice - (totalPrice * discount) / 100
         : totalPrice;
 
-    setDiscountPrice(finalPrice);
+    setDiscountPrice((prev) => finalPrice);
   };
 
   // Call updatePrice whenever checkIn, checkOut, or discount changes
@@ -304,7 +315,7 @@ export default function ReservationForm({
             {new Intl.NumberFormat("es-MX", {
               style: "currency",
               currency: "MXN",
-            }).format(price * bookingDays * (numberOfPeople + 1))}{" "}
+            }).format(price)}{" "}
             MXN
           </span>
         </div>
@@ -328,7 +339,7 @@ export default function ReservationForm({
                 style: "currency",
                 currency: "MXN",
               })
-                .format(discountPrice * (numberOfPeople + 1))
+                .format(discountPrice)
                 .replace(".", ",")}{" "}
             MXN
           </span>

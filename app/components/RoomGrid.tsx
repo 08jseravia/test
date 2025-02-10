@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { checkDatePrice } from "../utils";
 type Room = {
   id: number;
   name: string;
@@ -39,7 +40,9 @@ const RoomsGrid = ({ rooms }: { rooms: Room[] }) => {
                     className="absolute top-[30px] left-[30px] rounded-[6px] text-primary text-[20px] p-[10px_15px] bg-white leading-none"
                     style={{ color: "#b0916b" }}
                   >
-                    {formatter.format(room.prices.high)}
+                    {formatter.format(
+                      checkDatePrice(room?.prices?.high, room?.prices?.low)
+                    )}
                   </h6>
                   <img
                     className="h-[300px]"
