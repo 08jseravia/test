@@ -75,7 +75,8 @@ const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
                         <span className="font-bold">Size:</span> {room.roomSize}
                       </p>
                       <p className="text-gray-700">
-                        <span className="font-bold">Guests:</span> {room.person}
+                        <span className="font-bold">Huéspedes:</span>{" "}
+                        {room.person}
                       </p>
                     </div>
                     <div className="mt-auto">
