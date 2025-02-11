@@ -222,17 +222,19 @@ const ContactSection = () => {
             style={{ fontFamily: "Rubik" }}
           >
             <div>
-              <h4
-                className="heading text-2xl mb-[15px]"
-                style={{ fontFamily: "Rubik" }}
-              >
+              <h4 className="heading text-2xl mb-[15px]">
                 Centro de Información del Hotel
               </h4>
               <p className="font-glida text-[20px] leading-relaxed">
-                Open Hours: Monday – Sunday <br />
-                Telephone: +12505550199 <br />
-                Fax: +12505550199 <br />
-                Email: info@moonlit.com
+                Horario de Atención: Lunes – Domingo <br />
+                <a
+                  className="flex items-center gap-2"
+                  href="tel:1.866.527.4762"
+                >
+                  <i className="flaticon-phone-flip"></i>
+                  Teléfono: +1.866.527.4762
+                </a>
+                Correo Electrónico: reservaciones@margaritavilleresorts.com.mx
               </p>
             </div>
             <div>
@@ -241,9 +243,14 @@ const ContactSection = () => {
               </h4>
               <p className="font-glida text-[20px] leading-relaxed">
                 Address: The Ritz-Carlton (California, USA) <br />
-                Telephone: +12505550199 <br />
-                Fax: +12505550199 <br />
-                Email: info@moonlit.com
+                <a
+                  className="flex items-center gap-2"
+                  href="tel:1.866.527.4762"
+                >
+                  <i className="flaticon-phone-flip"></i>
+                  Telephone: +1.866.527.4762
+                </a>
+                Correo Electrónico: reservaciones@margaritavilleresorts.com.mx
               </p>
             </div>
           </div>
