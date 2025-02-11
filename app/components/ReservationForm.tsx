@@ -5,6 +5,7 @@ import { checkDatePrice, getPrice } from "../utils";
 
 interface Room {
   person: number;
+  name: string;
   prices: {
     high: number;
     low: number;
@@ -162,7 +163,13 @@ export default function ReservationForm({
 
     setErrors({});
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form submitted successfully:", formValues);
+    console.log("Form submitted successfully:", {
+      ...formValues,
+      room: room?.name,
+      total: price,
+      discount: discount,
+      totalPrice: discountPrice,
+    });
     setLoading(false);
   };
 
