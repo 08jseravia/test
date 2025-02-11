@@ -320,18 +320,18 @@ export default function ReservationForm({
         {/* Discount Percent */}
         <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
           <span className="total h6 mb-0 text-heading">Descuento</span>
-          <span id="price" className="price h6 m-0 text-heading text-green-600">
-            {discount}%
+          <span
+            id="price"
+            className="price h6 m-0 text-heading text-white bg-green-600 p-1 rounded-md"
+          >
+            {discount}% PROMOCIONAL
           </span>
         </div>
 
         {/* Discount */}
         <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
           <span className="total h6 mb-0 text-heading">Precio Total</span>
-          <span
-            id="price"
-            className="price h6 m-0 text-heading text-[#f53d3d] underline"
-          >
+          <span id="price" className="price h6 m-0 text-heading text-[#f53d3d]">
             {discountPrice &&
               new Intl.NumberFormat("es-MX", {
                 style: "currency",
