@@ -250,7 +250,12 @@ export const roomData = [
       {
         id: 13,
         name: "Island Oasis Suite",
-        img: ["assets/images/room/island-oasis-suite-rooms.jpg"],
+        img: [
+          "assets/images/room/island-oasis-suite-rooms.jpg",
+          "assets/images/room/oasis1.webp",
+          "assets/images/room/oasis2.webp",
+          "assets/images/room/oasis3.webp",
+        ],
         desc: "Ubicada en la planta baja con vista a los exuberantes jardines, estas suites cuidadosamente diseñadas ofrecen cama tamaño King, área de estar con sofá y mesa lateral. La terraza tiene acceso a un oasis de jardín sereno que cuenta con una hamaca, área de descanso y una pared verde para agregarle un toque zen.",
         person: 2,
         roomSize: "452 ft² | 42 m²",
