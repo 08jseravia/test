@@ -271,14 +271,16 @@ export default function ReservationForm({
           >
             Correo electrónico
           </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Escribe tu correo"
-            className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
-            required
-          />
+          <div className="relative min-w-[160px] max-w-[160px]">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Escribe tu correo"
+              className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
+              required
+            />
+          </div>
           {errors.email && (
             <p className="text-red-500 text-sm">{errors.email}</p>
           )}
@@ -292,14 +294,16 @@ export default function ReservationForm({
           >
             Número de Teléfono
           </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Número de Teléfono"
-            className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
-            required
-          />
+          <div className="relative min-w-[160px] max-w-[160px]">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Número de Teléfono"
+              className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
+              required
+            />
+          </div>
           {errors.phone && (
             <p className="text-red-500 text-sm">{errors.phone}</p>
           )}
