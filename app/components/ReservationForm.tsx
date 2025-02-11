@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
-import { checkDatePrice } from "../utils";
+import { checkDatePrice, getPrice } from "../utils";
 
 interface Room {
   person: number;
@@ -37,24 +37,39 @@ export default function ReservationForm({
 }) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
-  const [price, setPrice] = useState<number>(
-    checkDatePrice(room?.prices?.high, room?.prices?.low) || 0
-  ); // Ensuring number type
   const [discountPrice, setDiscountPrice] = useState<number>(0); // Ensuring number type
   const [bookingDays, setBookingDays] = useState(1);
-  const [numberOfPeople, setNumberOfPeople] = useState(1);
+  const [numberOfPeople, setNumberOfPeople] = useState(2);
   const [checkIn, setCheckIn] = useState<string>(
     `${new Date().toISOString().split("T")[0]}`
   );
   const [checkOut, setCheckOut] = useState<string>(
     `${new Date().toISOString().split("T")[0]}`
   );
+  const [price, setPrice] = useState<number>(
+    getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) || 0
+  ); // Ensuring number type
 
   useEffect(() => {
     console.log("Setting");
     setCheckIn(`${new Date().toISOString().split("T")[0]}`);
     setCheckOut(`${new Date().toISOString().split("T")[0]}`);
-    setPrice(checkDatePrice(room?.prices?.high, room?.prices?.low) || 0); // Fallback if `high` price is undefined
+    setPrice(
+      getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
+        numberOfPeople ??
+        (1 || 0)
+    ); // Fallback if `high` price is undefined
+    const disPrice =
+      discount && discount != null && discount != undefined
+        ? getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
+            numberOfPeople -
+          (getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
+            numberOfPeople *
+            discount) /
+            100
+        : getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
+            numberOfPeople || 0; // Ensuring fallback value if `high` is undefined
+    setDiscountPrice((prev) => disPrice);
   }, []);
 
   const options = Array.from(
@@ -85,16 +100,18 @@ export default function ReservationForm({
     setBookingDays(days);
 
     const pricePerNight =
-      checkDatePrice(room?.prices?.high, room?.prices?.low) || 0; // Ensure fallback value
+      getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) || 0; // Ensure fallback value
     const disPrice =
       discount && discount != null && discount != undefined
-        ? checkDatePrice(room?.prices?.high, room?.prices?.low) -
-          (checkDatePrice(room?.prices?.high, room?.prices?.low) * discount) /
+        ? getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) -
+          (getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
+            discount) /
             100
-        : checkDatePrice(room?.prices?.high, room?.prices?.low) || 0; // Ensuring fallback value if `high` is undefined
+        : getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) ||
+          0; // Ensuring fallback value if `high` is undefined
     setDiscountPrice((prev) => disPrice);
 
-    const totalPrice = days * pricePerNight * (numberOfPeople + 1);
+    const totalPrice = days * pricePerNight * numberOfPeople;
     console.log(
       "Total Price: ",
       totalPrice,
@@ -203,7 +220,9 @@ export default function ReservationForm({
               min={`${new Date().toISOString().split("T")[0]}`}
               value={checkIn}
               onChange={(val) => {
-                setCheckIn(val.target.value);
+                setCheckIn((prev) => val.target.value);
+                if (new Date(val.target.value) > new Date(checkOut))
+                  setCheckOut((prev) => val.target.value);
               }}
             />
             {errors.check__in && (
@@ -227,7 +246,7 @@ export default function ReservationForm({
               name="check__out"
               className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
               required
-              min={`${new Date().toISOString().split("T")[0]}`}
+              min={`${checkIn}`}
               value={checkOut}
               onChange={(val) => {
                 setCheckOut(val.target.value);
@@ -338,9 +357,7 @@ export default function ReservationForm({
               new Intl.NumberFormat("es-MX", {
                 style: "currency",
                 currency: "MXN",
-              })
-                .format(discountPrice)
-                .replace(".", ",")}{" "}
+              }).format(discountPrice)}{" "}
             MXN
           </span>
         </div>
