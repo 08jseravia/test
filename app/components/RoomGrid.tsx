@@ -10,7 +10,6 @@ type Room = {
   prices: {
     high: number; // High price
     low: number; // Low price
-    Diciembre: number; // Price for December
     range: {
       low: string; // Low price range start date
       high: string; // High price range end date
