@@ -175,7 +175,7 @@ export default function ReservationForm({
 
   return (
     <form id="reservationForm" method="post" onSubmit={handleSubmit}>
-      <div className="grid gap-[20px] text-sm">
+      <div className="grid gap-[10px] text-sm">
         {/* Check In */}
         <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
@@ -322,7 +322,7 @@ export default function ReservationForm({
           <span className="total h6 mb-0 text-heading">Descuento</span>
           <span
             id="price"
-            className="price h6 m-0 text-heading text-white bg-green-600 p-1 rounded-md"
+            className="price h6 m-0 text-heading text-green-600 p-1 rounded-md"
           >
             {discount}% PROMOCIONAL
           </span>
