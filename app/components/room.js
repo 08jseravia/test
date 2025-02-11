@@ -13,8 +13,8 @@ export const roomData = [
           "assets/images/room/presidential-oceanfront-paradise-swim-up-studio-rooms-margaritaville-riviera-maya-3.webp",
           "assets/images/room/presidential-oceanfront-paradise-swim-up-studio-rooms-margaritaville-riviera-maya-4.webp",
           "assets/images/room/oceanfront-paradise-swim-up-studio1.jpg",
-          "assets/images/room/presidential-oceanfront-paradise-swim-up-studio1.webp",
           "assets/images/room/presidential-oceanfront-paradise-swim-up1.webp",
+          "assets/images/room/oceanfront-paradise-swim-up-studio2.jpg",
         ],
         desc: "Estas suites cuentan con impresionantes vistas al mar Caribe y se dividen en dos partes: una zona de dormitorio de tamaño king y una zona de estar con sofá, mesa de comedor y 2 Smart TV, una amplia terraza que conduce a una piscina infinita. El cuarto de baño acristalado cuenta con bañera exenta y ducha de efecto lluvia.",
         person: 2,
@@ -259,7 +259,6 @@ export const roomData = [
         img: [
           "assets/images/room/island-oasis-suite-rooms.jpg",
           "assets/images/room/oasis1.webp",
-          "assets/images/room/oasis2.webp",
           "assets/images/room/oasis3.webp",
           "assets/images/room/island-oasis-suite4.jpg",
           "assets/images/room/island-oasis-suite5.jpg",
