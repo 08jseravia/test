@@ -87,8 +87,8 @@ const RoomDetailSection = ({
           </div>
         </div>
         <div className="flex w-[100%]">
-          <div className="rounded-[10px] z-10 dark:shadow-none lg:mt-[15%] mx-[10%] lg:mx-auto w-full lg:w-auto">
-            <div className=" bg-gray-200  p-10 rounded-lg md:mt-24">
+          <div className="rounded-[10px] z-10 dark:shadow-none lg:mt-[15%] mx-[5%] lg:mx-auto w-full lg:w-auto">
+            <div className=" bg-gray-200 text-sm ld:text-md  p-4 lg:p-10 rounded-lg md:mt-24">
               <h5
                 className="heading text-2xl text-center mb-[30px]"
                 style={{ fontFamily: "Rubik" }}
