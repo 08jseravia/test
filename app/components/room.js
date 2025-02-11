@@ -214,6 +214,7 @@ export const roomData = [
           "assets/images/room/oceanfront-paradise-studio-rooms-margaritaville-riviera-maya-4.webp",
           "assets/images/room/oceanfront-paradise-studio-rooms-margaritaville-riviera-maya-7.webp",
           "assets/images/room/oceanfront-paradise-studio-rooms-margaritaville-riviera-maya-2.webp",
+          "assets/images/room/oceanfront-paradise-studio-3.webp",
         ],
         desc: "Estas suites cuentan con magníficas vistas a la playa. Las suites están divididas en dos partes: una zona de dormitorio con cama king-size y una zona de estar con sofá, mesa de comedor y Smart TV, una terraza amueblada con mesa, sillas y sofá cama. El cuarto de baño acristalado cuenta con bañera exenta y ducha de efecto lluvia.",
         person: 2,
