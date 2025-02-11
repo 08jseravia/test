@@ -2,13 +2,13 @@
 import React, { FormEvent, useState } from "react";
 
 const ContactSection = () => {
-  const [isPopupVisible, setIsPopupVisible] = useState(true);
+  // const [isPopupVisible, setIsPopupVisible] = useState(true);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission logic here
     console.log("Form submitted!");
-    setIsPopupVisible(false); // Close the popup after submission
+    // setIsPopupVisible(false); // Close the popup after submission
   };
 
   return (
@@ -29,8 +29,8 @@ const ContactSection = () => {
         </div>
       </div>
 
-      {/* Popup Form */}
-      {isPopupVisible && (
+      {/* Popup Form remove popup form*/}
+      {/* {isPopupVisible && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end justify-center z-50">
           <div className="bg-white p-[20px] rounded-t-[10px] w-full max-w-[500px]">
             <div className="flex justify-end">
@@ -115,7 +115,7 @@ const ContactSection = () => {
             </form>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Contact Content */}
       <div className="container mx-auto px-4">
