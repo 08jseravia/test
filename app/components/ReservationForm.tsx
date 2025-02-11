@@ -9,15 +9,14 @@ interface Room {
     high: number;
     low: number;
   };
-  // Add other properties of room here
 }
 
 interface Reservation {
-  check__in: string; // Date in string format
-  check__out: string; // Date in string format
-  adult: string; // Assuming adult count is stored as string
-  email: string; // Email address
-  phone: string; // Phone number
+  check__in: string;
+  check__out: string;
+  adult: string;
+  email: string;
+  phone: string;
 }
 
 interface FormErrors {
@@ -37,50 +36,48 @@ export default function ReservationForm({
 }) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
-  const [discountPrice, setDiscountPrice] = useState<number>(0); // Ensuring number type
+  const [discountPrice, setDiscountPrice] = useState<number>(0);
   const [bookingDays, setBookingDays] = useState(1);
-  const [numberOfPeople, setNumberOfPeople] = useState(2);
-  const [checkIn, setCheckIn] = useState<string>(
-    `${new Date().toISOString().split("T")[0]}`
+  const [numberOfPeople, setNumberOfPeople] = useState(
+    room.person === 2 ? 1 : 2
   );
-  const [checkOut, setCheckOut] = useState<string>(
-    `${new Date().toISOString().split("T")[0]}`
+  const [checkIn, setCheckIn] = useState(
+    new Date().toISOString().split("T")[0]
   );
-  const [price, setPrice] = useState<number>(
-    getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) || 0
-  ); // Ensuring number type
+  const [checkOut, setCheckOut] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+  const [price, setPrice] = useState(
+    getPrice(checkIn, checkOut, room.prices.high, room.prices.low) || 0
+  );
 
   useEffect(() => {
-    console.log("Setting");
-    setCheckIn(`${new Date().toISOString().split("T")[0]}`);
-    setCheckOut(`${new Date().toISOString().split("T")[0]}`);
-    setPrice(
-      getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
-        numberOfPeople
-    ); // Fallback if `high` price is undefined
-    const disPrice =
-      discount && discount != null && discount != undefined
-        ? getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
-            numberOfPeople -
-          (getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
-            numberOfPeople *
-            discount) /
-            100
-        : getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
-            numberOfPeople || 0; // Ensuring fallback value if `high` is undefined
-    setDiscountPrice((prev) => disPrice);
-  }, []);
+    const initialPrice =
+      getPrice(checkIn, checkOut, room.prices.high, room.prices.low) *
+      numberOfPeople;
+    const discountedPrice = discount
+      ? initialPrice - (initialPrice * discount) / 100
+      : initialPrice;
+
+    setPrice(initialPrice);
+    setDiscountPrice(discountedPrice);
+  }, [
+    checkIn,
+    checkOut,
+    numberOfPeople,
+    discount,
+    room.prices.high,
+    room.prices.low,
+  ]);
 
   const options = Array.from(
-    { length: room?.person - 1 },
+    { length: room.person - 1 },
     (_, index) => index + 2
   );
+  const option2 = Array.from({ length: room.person }, (_, index) => index + 1);
 
   const updatePrice = () => {
-    setBookingDays(1);
-    if (!checkIn || !checkOut) {
-      return;
-    }
+    if (!checkIn || !checkOut) return;
 
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
@@ -89,83 +86,54 @@ export default function ReservationForm({
       isNaN(checkInDate.getTime()) ||
       isNaN(checkOutDate.getTime()) ||
       checkOutDate <= checkInDate
-    ) {
+    )
       return;
-    }
-    // Calculate the number of nights
+
     const days = Math.ceil(
       (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)
     );
     setBookingDays(days);
 
     const pricePerNight =
-      getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) || 0; // Ensure fallback value
-    const disPrice =
-      discount && discount != null && discount != undefined
-        ? getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) -
-          (getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
-            discount) /
-            100
-        : getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) ||
-          0; // Ensuring fallback value if `high` is undefined
-    setDiscountPrice((prev) => disPrice);
-
+      getPrice(checkIn, checkOut, room.prices.high, room.prices.low) || 0;
     const totalPrice = days * pricePerNight * numberOfPeople;
-    console.log(
-      "Total Price: ",
-      totalPrice,
-      "Days: ",
-      days,
-      "Price: ",
-      pricePerNight,
-      " People: ",
-      numberOfPeople
-    );
-    setPrice((prev) => totalPrice);
-    // Apply discount if available
-    const finalPrice =
-      discount && discount != null && discount != undefined
-        ? totalPrice - (totalPrice * discount) / 100
-        : totalPrice;
+    const finalPrice = discount
+      ? totalPrice - (totalPrice * discount) / 100
+      : totalPrice;
 
-    setDiscountPrice((prev) => finalPrice);
+    setPrice(totalPrice);
+    setDiscountPrice(finalPrice);
   };
 
-  // Call updatePrice whenever checkIn, checkOut, or discount changes
   useEffect(() => {
     updatePrice();
-  }, [checkIn, checkOut, discount]);
+  }, [checkIn, checkOut, numberOfPeople]);
 
   const validateForm = (formData: Reservation) => {
     const newErrors: FormErrors = {};
 
-    // Check In Date Validation
     if (!formData.check__in) {
       newErrors.check__in = "Check-in date is required.";
     } else if (new Date(formData.check__in) < new Date("2025-01-28")) {
       newErrors.check__in = "Check-in date must be after 2025-01-28.";
     }
 
-    // Check Out Date Validation
     if (!formData.check__out) {
       newErrors.check__out = "Check-out date is required.";
     } else if (new Date(formData.check__out) < new Date(formData.check__in)) {
       newErrors.check__out = "Check-out date must be after check-in date.";
     }
 
-    // Adult Validation
     if (!formData.adult) {
       newErrors.adult = "Number of adults is required.";
     }
 
-    // Email Validation
     if (!formData.email) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid.";
     }
 
-    // Phone Validation
     if (!formData.phone) {
       newErrors.phone = "El número de teléfono es obligatorio.";
     } else if (!/^\d{10,13}$/.test(formData.phone)) {
@@ -177,25 +145,25 @@ export default function ReservationForm({
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
 
-    const formData = new FormData(e.target as HTMLFormElement);
-    const formValues = Object.fromEntries(formData.entries());
+    const formData = new FormData(e.currentTarget);
+    const formValues = Object.fromEntries(
+      formData.entries()
+    ) as any as Reservation;
 
-    const validationErrors = validateForm(formValues as any as Reservation);
+    const validationErrors = validateForm(formValues);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setLoading(false);
       return;
     }
+
     setErrors({});
-    // Introduce a 1.5-second delay
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    // If no errors, submit the form
     console.log("Form submitted successfully:", formValues);
     setLoading(false);
-    // You can add your form submission logic here (e.g., API call)
   };
 
   return (
@@ -205,7 +173,7 @@ export default function ReservationForm({
         <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="check__in"
-            className="block text-sm font-glida text-heading "
+            className="block text-sm font-glida text-heading"
           >
             Check In
           </label>
@@ -216,12 +184,12 @@ export default function ReservationForm({
               className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
               name="check__in"
               required
-              min={`${new Date().toISOString().split("T")[0]}`}
+              min={new Date().toISOString().split("T")[0]}
               value={checkIn}
-              onChange={(val) => {
-                setCheckIn((prev) => val.target.value);
-                if (new Date(val.target.value) > new Date(checkOut))
-                  setCheckOut((prev) => val.target.value);
+              onChange={(e) => {
+                setCheckIn(e.target.value);
+                if (new Date(e.target.value) > new Date(checkOut))
+                  setCheckOut(e.target.value);
               }}
             />
             {errors.check__in && (
@@ -234,7 +202,7 @@ export default function ReservationForm({
         <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="check__out"
-            className="block text-sm font-glida text-heading "
+            className="block text-sm font-glida text-heading"
           >
             Check Out
           </label>
@@ -245,11 +213,9 @@ export default function ReservationForm({
               name="check__out"
               className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
               required
-              min={`${checkIn}`}
+              min={checkIn}
               value={checkOut}
-              onChange={(val) => {
-                setCheckOut(val.target.value);
-              }}
+              onChange={(e) => setCheckOut(e.target.value)}
             />
             {errors.check__out && (
               <p className="text-red-500 text-sm">{errors.check__out}</p>
@@ -261,7 +227,7 @@ export default function ReservationForm({
         <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="adult"
-            className="block text-sm font-glida text-heading "
+            className="block text-sm font-glida text-heading"
           >
             Adulto
           </label>
@@ -270,13 +236,19 @@ export default function ReservationForm({
               name="adult"
               id="adult"
               className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
-              onChange={(e) => setNumberOfPeople(Number(e.target?.value) - 1)}
+              onChange={(e) => setNumberOfPeople(Number(e.target.value))}
             >
-              {options.map((option) => (
-                <option key={option} value={option}>
-                  {option} Persona{option > 1 ? "s" : ""}
-                </option>
-              ))}
+              {room.person > 2
+                ? options.map((option) => (
+                    <option key={option} value={option}>
+                      {option} Persona{option > 1 ? "s" : ""}
+                    </option>
+                  ))
+                : option2.map((option) => (
+                    <option key={`op2-${option}`} value={option}>
+                      {option} Persona{option > 1 ? "s" : ""}
+                    </option>
+                  ))}
             </select>
             {errors.adult && (
               <p className="text-red-500 text-sm">{errors.adult}</p>
@@ -309,7 +281,7 @@ export default function ReservationForm({
         <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="phone"
-            className="block text-sm font-glida text-heading "
+            className="block text-sm font-glida text-heading"
           >
             Número de Teléfono
           </label>
@@ -337,7 +309,8 @@ export default function ReservationForm({
             MXN
           </span>
         </div>
-        {/* Discount Percent*/}
+
+        {/* Discount Percent */}
         <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
           <span className="total h6 mb-0 text-heading">Descuento</span>
           <span id="price" className="price h6 m-0 text-heading text-green-600">
