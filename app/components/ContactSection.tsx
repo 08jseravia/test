@@ -16,7 +16,9 @@ const ContactSection = () => {
       {/* Hero Section */}
       <div
         className="relative h-[400px] lg:h-[700px] bg-black bg-opacity-45 bg-cover bg-center justify-center bg-no-repeat flex items-center before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:bg-black before:opacity-60"
-        style={{ backgroundImage: "url(/assets/images/pages/header__bg.webp)" }}
+        style={{
+          backgroundImage: "url(/assets/images/banner_1.jpg)",
+        }}
       >
         <div className="container text-center text-white relative">
           <h1 className="heading text-white mb-[20px] text-[40px] lg:text-[70px] md:text-[60px] sm:text-[50px] leading-none">
