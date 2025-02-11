@@ -56,8 +56,7 @@ export default function ReservationForm({
     setCheckOut(`${new Date().toISOString().split("T")[0]}`);
     setPrice(
       getPrice(checkIn, checkOut, room?.prices?.high, room?.prices?.low) *
-        numberOfPeople ??
-        (1 || 0)
+        numberOfPeople
     ); // Fallback if `high` price is undefined
     const disPrice =
       discount && discount != null && discount != undefined
