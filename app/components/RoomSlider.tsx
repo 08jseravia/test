@@ -83,11 +83,13 @@ const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
                       <p className="text-gray-700">
                         <span className="font-bold">Price:</span>
                         <span className="ml-2 text-[#b69a77]">
-                          $
                           {checkDatePrice(
                             room?.prices?.high,
                             room?.prices?.low
-                          )}{" "}
+                          )?.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}{" "}
                           MXN
                         </span>
                       </p>
