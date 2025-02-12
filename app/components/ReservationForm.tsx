@@ -188,7 +188,7 @@ export default function ReservationForm({
             <input
               type="date"
               id="check_in"
-              className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
+              className="relative z-10 w-[100%]  bg-white appearance-none p-[0_5px] outline-none"
               name="check__in"
               required
               min={new Date().toISOString().split("T")[0]}
@@ -213,12 +213,12 @@ export default function ReservationForm({
           >
             Check Out
           </label>
-          <div className="relative min-w-[160px] max-w-[160px]">
+          <div className="relative min-w-[160px] max-w-[160px] flex justify-start items-start">
             <input
               type="date"
               id="check_out"
               name="check__out"
-              className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
+              className="relative z-10 w-[100%] bg-white appearance-none p-[0_5px] outline-none"
               required
               min={checkIn}
               value={checkOut}
@@ -239,24 +239,34 @@ export default function ReservationForm({
             Adulto
           </label>
           <div className="relative min-w-[160px] max-w-[160px]">
-            <select
-              name="adult"
-              id="adult"
-              className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
-              onChange={(e) => setNumberOfPeople(Number(e.target.value))}
-            >
-              {room.person > 2
-                ? options.map((option) => (
-                    <option key={option} value={option}>
-                      {option} Persona{option > 1 ? "s" : ""}
-                    </option>
-                  ))
-                : option2.map((option) => (
-                    <option key={`op2-${option}`} value={option}>
-                      {option} Persona{option > 1 ? "s" : ""}
-                    </option>
-                  ))}
-            </select>
+            <div className="flex justify-start items-start">
+              <select
+                name="adult"
+                id="adult"
+                className="relative z-10 w-[100%]  bg-white appearance-none p-[0_5px] outline-none text-center"
+                onChange={(e) => setNumberOfPeople(Number(e.target.value))}
+              >
+                {room.person > 2
+                  ? options.map((option) => (
+                      <option
+                        key={option}
+                        value={option}
+                        className="text-start"
+                      >
+                        {option} Persona{option > 1 ? "s" : ""}
+                      </option>
+                    ))
+                  : option2.map((option) => (
+                      <option
+                        key={`op2-${option}`}
+                        value={option}
+                        className="text-start"
+                      >
+                        {option} Persona{option > 1 ? "s" : ""}
+                      </option>
+                    ))}
+              </select>
+            </div>
             {errors.adult && (
               <p className="text-red-500 text-sm">{errors.adult}</p>
             )}
@@ -277,7 +287,7 @@ export default function ReservationForm({
               name="email"
               id="email"
               placeholder="Escribe tu correo"
-              className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
+              className="relative z-10 w-[100%] bg-white appearance-none p-[0_5px] outline-none"
               required
             />
           </div>
@@ -300,7 +310,7 @@ export default function ReservationForm({
               id="phone"
               name="phone"
               placeholder="Número de Teléfono"
-              className="relative z-10 w-[100%] ml-[20px] bg-white appearance-none p-[0_5px] outline-none"
+              className="relative z-10 w-[100%]  bg-white appearance-none p-[0_5px] outline-none"
               required
             />
           </div>
