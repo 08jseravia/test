@@ -184,7 +184,7 @@ export default function ReservationForm({
           >
             Check In
           </label>
-          <div className="relative min-w-[160px] max-w-[160px]">
+          <div className="relative min-w-[160px] max-w-[160px] flex justify-start items-start text-left">
             <input
               style={{ textAlign: "left" }}
               type="date"
@@ -214,7 +214,7 @@ export default function ReservationForm({
           >
             Check Out
           </label>
-          <div className="relative min-w-[160px] max-w-[160px] flex justify-start items-start">
+          <div className="relative min-w-[160px] max-w-[160px] flex justify-start items-start text-left">
             <input
               type="date"
               style={{ textAlign: "left" }}

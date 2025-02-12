@@ -43,19 +43,19 @@ const Header = () => {
             <div className="hidden md:block">
               <a
                 className="flex gap-[10px] items-center text-xs text-white"
-                href="callto:52 99 8411 8355"
+                href="callto:52 998 411 8355"
               >
                 <i className="flaticon-phone-flip relative top-[3px]"></i>
-                +52 99 8411 8355
+                +52 998 411 8355
               </a>
             </div>
             <div className="-mr-2 flex md:hidden">
               <a
                 className="flex gap-[10px] items-center text-xs text-white mr-8"
-                href="callto:52 99 8411 8355"
+                href="callto:52 998 411 8355"
               >
                 <i className="flaticon-phone-flip relative top-[3px]"></i>
-                +52 99 8411 8355
+                +52 998 411 8355
               </a>
               <button
                 onClick={() => setIsOpen(!isOpen)}
