@@ -186,6 +186,7 @@ export default function ReservationForm({
           </label>
           <div className="relative min-w-[160px] max-w-[160px]">
             <input
+              style={{ textAlign: "left" }}
               type="date"
               id="check_in"
               className="relative z-10 w-[100%]  bg-white appearance-none p-[0_5px] outline-none"
@@ -216,6 +217,7 @@ export default function ReservationForm({
           <div className="relative min-w-[160px] max-w-[160px] flex justify-start items-start">
             <input
               type="date"
+              style={{ textAlign: "left" }}
               id="check_out"
               name="check__out"
               className="relative z-10 w-[100%] bg-white appearance-none p-[0_5px] outline-none"
@@ -336,7 +338,7 @@ export default function ReservationForm({
           <span className="total h6 mb-0 text-heading">Descuento</span>
           <span
             id="price"
-            className="price h6 m-0 text-heading text-green-600 p-1 rounded-md"
+            className="price h6 m-0 text-heading text-green-600 rounded-md"
           >
             {discount}% PROMOCIONAL
           </span>

@@ -27,6 +27,9 @@ select {
   -moz-appearance: none; /* Firefox */
   appearance: none; /* Standard */
 }
+input {
+  text-align: left;
+}
 /*
 
 body {
