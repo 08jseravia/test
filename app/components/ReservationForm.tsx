@@ -189,7 +189,7 @@ export default function ReservationForm({
           >
             Check In
           </label>
-          <div className="relative w-[160px]">
+          <div className="relative min-w-[160px]">
             <input
               type="date"
               id="check_in"
@@ -218,7 +218,7 @@ export default function ReservationForm({
           >
             Check Out
           </label>
-          <div className="relative w-[160px]">
+          <div className="relative min-w-[160px]">
             <input
               type="date"
               id="check_out"
@@ -243,11 +243,11 @@ export default function ReservationForm({
           >
             Adulto
           </label>
-          <div className="relative w-[160px]">
+          <div className="relative min-w-[160px]">
             <select
               name="adult"
               id="adult"
-              className="w-full bg-white p-[0_5px] outline-none text-left ml-[2px]"
+              className="w-full bg-white p-[0_5px] outline-none text-left ml-1"
               onChange={(e) => setNumberOfPeople(Number(e.target.value))}
             >
               {room.person > 2
@@ -276,13 +276,13 @@ export default function ReservationForm({
           >
             Correo electrónico
           </label>
-          <div className="relative w-[160px]">
+          <div className="relative min-w-[160px]">
             <input
               type="email"
               name="email"
               id="email"
               placeholder="Escribe tu correo"
-              className="w-full bg-white p-[0_5px] outline-none ml-[2px]"
+              className="w-[160px] bg-white p-[0_5px] outline-none ml-1"
               required
             />
             {errors.email && (
@@ -299,13 +299,13 @@ export default function ReservationForm({
           >
             Número de Teléfono
           </label>
-          <div className="relative w-[160px]">
+          <div className="relative min-w-[160px]">
             <input
               type="tel"
               id="phone"
               name="phone"
               placeholder="Número de Teléfono"
-              className="w-full bg-white p-[0_5px] outline-none ml-[2px]"
+              className="w-[160px] bg-white p-[0_5px] outline-none ml-1"
               required
             />
             {errors.phone && (
