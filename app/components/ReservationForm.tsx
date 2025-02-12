@@ -177,19 +177,18 @@ export default function ReservationForm({
     <form id="reservationForm" method="post" onSubmit={handleSubmit}>
       <div className="grid gap-[10px] text-sm">
         {/* Check In */}
-        <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
+        <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="check__in"
             className="block text-sm font-glida text-heading"
           >
             Check In
           </label>
-          <div className="relative min-w-[160px] max-w-[160px] flex justify-start items-start text-left">
+          <div className="relative w-[160px]">
             <input
-              style={{ textAlign: "left" }}
               type="date"
               id="check_in"
-              className="relative z-10 w-[100%]  bg-white appearance-none p-[0_5px] outline-none"
+              className="w-full bg-white p-[0_5px] outline-none text-left"
               name="check__in"
               required
               min={new Date().toISOString().split("T")[0]}
@@ -207,20 +206,19 @@ export default function ReservationForm({
         </div>
 
         {/* Check Out */}
-        <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
+        <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="check__out"
             className="block text-sm font-glida text-heading"
           >
             Check Out
           </label>
-          <div className="relative min-w-[160px] max-w-[160px] flex justify-start items-start text-left">
+          <div className="relative w-[160px]">
             <input
               type="date"
-              style={{ textAlign: "left" }}
               id="check_out"
               name="check__out"
-              className="relative z-10 w-[100%] bg-white appearance-none p-[0_5px] outline-none"
+              className="w-full bg-white p-[0_5px] outline-none text-left"
               required
               min={checkIn}
               value={checkOut}
@@ -233,42 +231,32 @@ export default function ReservationForm({
         </div>
 
         {/* Adult */}
-        <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
+        <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="adult"
             className="block text-sm font-glida text-heading"
           >
             Adulto
           </label>
-          <div className="relative min-w-[160px] max-w-[160px]">
-            <div className="flex justify-start items-start">
-              <select
-                name="adult"
-                id="adult"
-                className="relative z-10 w-[100%]  bg-white appearance-none p-[0_5px] outline-none text-center"
-                onChange={(e) => setNumberOfPeople(Number(e.target.value))}
-              >
-                {room.person > 2
-                  ? options.map((option) => (
-                      <option
-                        key={option}
-                        value={option}
-                        className="text-start"
-                      >
-                        {option} Persona{option > 1 ? "s" : ""}
-                      </option>
-                    ))
-                  : option2.map((option) => (
-                      <option
-                        key={`op2-${option}`}
-                        value={option}
-                        className="text-start"
-                      >
-                        {option} Persona{option > 1 ? "s" : ""}
-                      </option>
-                    ))}
-              </select>
-            </div>
+          <div className="relative w-[160px]">
+            <select
+              name="adult"
+              id="adult"
+              className="w-full bg-white ml-[8px] md:ml-auto p-[0_5px] outline-none text-left"
+              onChange={(e) => setNumberOfPeople(Number(e.target.value))}
+            >
+              {room.person > 2
+                ? options.map((option) => (
+                    <option key={option} value={option}>
+                      {option} Persona{option > 1 ? "s" : ""}
+                    </option>
+                  ))
+                : option2.map((option) => (
+                    <option key={`op2-${option}`} value={option}>
+                      {option} Persona{option > 1 ? "s" : ""}
+                    </option>
+                  ))}
+            </select>
             {errors.adult && (
               <p className="text-red-500 text-sm">{errors.adult}</p>
             )}
@@ -276,53 +264,53 @@ export default function ReservationForm({
         </div>
 
         {/* Email */}
-        <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
+        <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="email"
             className="block text-sm font-glida text-heading"
           >
             Correo electrónico
           </label>
-          <div className="relative min-w-[160px] max-w-[160px]">
+          <div className="relative w-[160px]">
             <input
               type="email"
               name="email"
               id="email"
               placeholder="Escribe tu correo"
-              className="relative z-10 w-[100%] bg-white appearance-none p-[0_5px] outline-none"
+              className="w-full bg-white p-[0_5px] outline-none"
               required
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
           </div>
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email}</p>
-          )}
         </div>
 
         {/* Phone */}
-        <div className="flex justify-between relative w-full p-[14px_20px] bg-white rounded-[6px]">
+        <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
           <label
             htmlFor="phone"
             className="block text-sm font-glida text-heading"
           >
             Número de Teléfono
           </label>
-          <div className="relative min-w-[160px] max-w-[160px]">
+          <div className="relative w-[160px]">
             <input
               type="tel"
               id="phone"
               name="phone"
               placeholder="Número de Teléfono"
-              className="relative z-10 w-[100%]  bg-white appearance-none p-[0_5px] outline-none"
+              className="w-full bg-white p-[0_5px] outline-none"
               required
             />
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone}</p>
+            )}
           </div>
-          {errors.phone && (
-            <p className="text-red-500 text-sm">{errors.phone}</p>
-          )}
         </div>
 
         {/* Total Price */}
-        <div className="total__price flex justify-between border-t-[1px] border-[#e5e5e5]">
+        <div className="total__price flex justify-between items-center border-t-[1px] border-[#e5e5e5] pt-3">
           <span className="total h6 mb-0 text-heading">Total</span>
           <span id="price" className="price h6 m-0 text-heading">
             {new Intl.NumberFormat("es-MX", {
@@ -334,7 +322,7 @@ export default function ReservationForm({
         </div>
 
         {/* Discount Percent */}
-        <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
+        <div className="flex justify-between items-center border-t-[1px] border-[#e5e5e5] pt-3">
           <span className="total h6 mb-0 text-heading">Descuento</span>
           <span
             id="price"
@@ -345,7 +333,7 @@ export default function ReservationForm({
         </div>
 
         {/* Discount */}
-        <div className="flex justify-between border-t-[1px] border-[#e5e5e5]">
+        <div className="flex justify-between items-center border-t-[1px] border-[#e5e5e5] pt-3">
           <span className="total h6 mb-0 text-heading">Precio Total</span>
           <span id="price" className="price h6 m-0 text-heading text-[#f53d3d]">
             {discountPrice &&
