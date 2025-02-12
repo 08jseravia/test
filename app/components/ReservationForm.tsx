@@ -242,7 +242,7 @@ export default function ReservationForm({
             <select
               name="adult"
               id="adult"
-              className="w-full bg-white ml-[8px] md:ml-auto p-[0_5px] outline-none text-left"
+              className="w-full bg-white p-[0_5px] outline-none text-left"
               onChange={(e) => setNumberOfPeople(Number(e.target.value))}
             >
               {room.person > 2
