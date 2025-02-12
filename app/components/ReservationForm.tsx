@@ -282,7 +282,7 @@ export default function ReservationForm({
               name="email"
               id="email"
               placeholder="Escribe tu correo"
-              className="w-full bg-white p-[0_5px] outline-none"
+              className="w-full bg-white p-[0_5px] outline-none ml-[2px]"
               required
             />
             {errors.email && (
@@ -305,7 +305,7 @@ export default function ReservationForm({
               id="phone"
               name="phone"
               placeholder="Número de Teléfono"
-              className="w-full bg-white p-[0_5px] outline-none ml-1"
+              className="w-full bg-white p-[0_5px] outline-none ml-[2px]"
               required
             />
             {errors.phone && (
