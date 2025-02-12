@@ -172,6 +172,11 @@ export default function ReservationForm({
     });
     setLoading(false);
   };
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputDate = e.target.value; // YYYY-MM-DD
+    const formattedDate = new Date(inputDate).toISOString().split("T")[0]; // Ensures YYYY-MM-DD format
+    return formattedDate;
+  };
 
   return (
     <form id="reservationForm" method="post" onSubmit={handleSubmit}>
@@ -194,9 +199,9 @@ export default function ReservationForm({
               min={new Date().toISOString().split("T")[0]}
               value={checkIn}
               onChange={(e) => {
-                setCheckIn(e.target.value);
+                setCheckIn(handleDateChange(e));
                 if (new Date(e.target.value) > new Date(checkOut))
-                  setCheckOut(e.target.value);
+                  setCheckOut(handleDateChange(e));
               }}
             />
             {errors.check__in && (
@@ -222,7 +227,7 @@ export default function ReservationForm({
               required
               min={checkIn}
               value={checkOut}
-              onChange={(e) => setCheckOut(e.target.value)}
+              onChange={(e) => setCheckOut(handleDateChange(e))}
             />
             {errors.check__out && (
               <p className="text-red-500 text-sm">{errors.check__out}</p>
