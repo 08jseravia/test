@@ -136,10 +136,10 @@ const ContactSection = () => {
                 Horario de Atención: Lunes – Domingo <br />
                 <a
                   className="flex items-center gap-2"
-                  href="tel:1.866.527.4762"
+                  href="tel:52 99 8411 8355"
                 >
                   <i className="flaticon-phone-flip"></i>
-                  Teléfono: +1.866.527.4762
+                  Teléfono: +52 99 8411 8355
                 </a>
                 Correo Electrónico: reservaciones@margaritavilleresorts.com.mx
               </p>
@@ -152,10 +152,10 @@ const ContactSection = () => {
                 Address: The Ritz-Carlton (California, USA) <br />
                 <a
                   className="flex items-center gap-2"
-                  href="tel:1.866.527.4762"
+                  href="tel:52 99 8411 8355"
                 >
                   <i className="flaticon-phone-flip"></i>
-                  Telephone: +1.866.527.4762
+                  Telephone: +52 99 8411 8355
                 </a>
                 Correo Electrónico: reservaciones@margaritavilleresorts.com.mx
               </p>

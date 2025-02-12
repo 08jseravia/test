@@ -21,6 +21,12 @@ body {
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+select {
+  -webkit-appearance: none; /* Safari */
+  -moz-appearance: none; /* Firefox */
+  appearance: none; /* Standard */
+}
 /*
 
 body {

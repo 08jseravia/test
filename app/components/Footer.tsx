@@ -73,11 +73,11 @@ const Footer = () => {
             <ul className="flex flex-col gap-[10px]">
               <li>
                 <Link
-                  href="tel:1.866.527.4762"
+                  href="tel:52 99 8411 8355"
                   className="flex gap-2 items-center"
                   aria-label="footer__contact"
                 >
-                  <i className="flaticon-phone-flip"></i> +1.866.527.4762
+                  <i className="flaticon-phone-flip"></i> +52 99 8411 8355
                 </Link>
               </li>
             </ul>
