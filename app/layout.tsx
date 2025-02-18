@@ -19,7 +19,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script src="https://smtpjs.com/v3/smtp.js" strategy="lazyOnload" />
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16881320456"
+        />
+        <Script
+          id="google-ads-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16881320456');
+            `,
+          }}
+        />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
