@@ -149,7 +149,9 @@ const ContactSection = () => {
                 Ubicación del Hotel
               </h4>
               <p className="font-glida text-[20px] leading-relaxed">
-                Address: The Ritz-Carlton (California, USA) <br />
+                Address: Carretera Cancún - Tulum KM. 27.5, Bahía Petempich,
+                77580 Puerto Morelos, México.
+                <br />
                 <a
                   className="flex items-center gap-2"
                   href="tel:52 998 411 8355"
