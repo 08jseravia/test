@@ -1,44 +1,44 @@
 import nodemailer from "nodemailer";
 
-// Define the email options type
-interface EmailOptions {
+// Definir el tipo de opciones de correo electrónico
+interface OpcionesCorreo {
   to: string;
   subject: string;
   text?: string;
   html?: string;
 }
 
-// Create a transporter using custom SMTP settings
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST, // SMTP server host (e.g., smtp.example.com)
-  port: parseInt(process.env.SMTP_PORT || "587"), // SMTP port (e.g., 587 for TLS)
-  secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
+// Crear un transportador utilizando configuraciones personalizadas de SMTP
+const transportador = nodemailer.createTransport({
+  host: process.env.SMTP_HOST, // Servidor SMTP (ejemplo: smtp.ejemplo.com)
+  port: parseInt(process.env.SMTP_PORT || "587"), // Puerto SMTP (ejemplo: 587 para TLS)
+  secure: process.env.SMTP_SECURE === "true", // true para 465, false para otros puertos
   auth: {
-    user: process.env.SMTP_USER, // Your email address (e.g., reservaciones@margaritavilleresorts.com.mx)
-    pass: process.env.SMTP_PASSWORD, // Your email password
+    user: process.env.SMTP_USER, // Dirección de correo electrónico (ejemplo: reservaciones@margaritavilleresorts.com.mx)
+    pass: process.env.SMTP_PASSWORD, // Contraseña del correo electrónico
   },
 });
 
-// Function to send an email
-export const sendEmail = async ({
+// Función para enviar un correo electrónico
+export const enviarCorreo = async ({
   to,
   subject,
   text,
   html,
-}: EmailOptions): Promise<void> => {
-  const mailOptions = {
-    from: `Reservaciones <${process.env.SMTP_USER}>`, // Sender address
-    to, // Recipient address
-    subject, // Email subject
-    text, // Plain text body
-    html, // HTML body (optional)
+}: OpcionesCorreo): Promise<void> => {
+  const opcionesCorreo = {
+    from: `Reservaciones <${process.env.SMTP_USER}>`, // Dirección del remitente
+    to, // Dirección del destinatario
+    subject, // Asunto del correo
+    text, // Cuerpo del correo en texto plano
+    html, // Cuerpo del correo en HTML (opcional)
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully");
+    await transportador.sendMail(opcionesCorreo);
+    console.log("Correo enviado con éxito");
   } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Failed to send email");
+    console.error("Error al enviar el correo");
+    throw new Error("Error al enviar el correo");
   }
 };
