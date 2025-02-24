@@ -162,16 +162,69 @@ export default function ReservationForm({
     }
 
     setErrors({});
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form submitted successfully:", {
-      ...formValues,
-      room: room?.name,
-      total: price,
-      discount: discount,
-      totalPrice: discountPrice,
-    });
-    setLoading(false);
+
+    try {
+      // Prepare the email content
+      const emailContent = `
+        Nueva Reservación:
+        Habitación: ${room?.name}
+        Check-in: ${formValues.check__in}
+        Check-out: ${formValues.check__out}
+        Adultos: ${formValues.adult}
+        Correo electrónico: ${formValues.email}
+        Teléfono: ${formValues.phone}
+        Precio Total: ${new Intl.NumberFormat("es-MX", {
+          style: "currency",
+          currency: "MXN",
+        }).format(discountPrice)} MXN
+      `;
+
+      // Send the email via the API route
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: process.env.NEXT_PUBLIC_ADMIN_EMAIL, // Replace with the admin email
+          subject: `Nueva Reservación: ${room?.name}`,
+          text: emailContent,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+
+      // Log the form submission and reset the form
+      console.log("Form submitted successfully:", {
+        ...formValues,
+        room: room?.name,
+        total: price,
+        discount: discount,
+        totalPrice: discountPrice,
+      });
+
+      // Reset form fields (optional)
+      setCheckIn(new Date().toISOString().split("T")[0]);
+      setCheckOut(new Date().toISOString().split("T")[0]);
+      setNumberOfPeople(room.person === 2 ? 1 : 2);
+      e.currentTarget.reset(); // Reset the form
+
+      // Show success message or redirect
+      alert(
+        "Reservación enviada con éxito. Nos pondremos en contacto contigo pronto."
+      );
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert(
+        "Hubo un error al enviar la reservación. Por favor, inténtalo de nuevo."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
+
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputDate = e.target.value; // YYYY-MM-DD
     const formattedDate = new Date(inputDate).toISOString().split("T")[0]; // Ensures YYYY-MM-DD format

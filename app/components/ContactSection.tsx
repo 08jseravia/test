@@ -2,7 +2,77 @@
 import React, { FormEvent, useState } from "react";
 
 const ContactSection = () => {
-  // const [isPopupVisible, setIsPopupVisible] = useState(true);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    msg: "",
+  });
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    const emailContent = `
+      Name: ${formData.name}
+      Email: ${formData.email}
+      Message: ${formData.msg}
+    `;
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: process.env.NEXT_PUBLIC_ADMIN_EMAIL, // Replace with the admin email
+          subject: "Nuevo envío del formulario de contacto",
+          text: emailContent,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+
+      // Reset form data
+      setFormData({
+        name: "",
+        email: "",
+        msg: "",
+      });
+
+      // Show success message
+      setSuccess(true);
+      alert("¡Gracias por contactarnos!");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setError(
+        "No se pudo enviar el mensaje. Por favor, inténtelo de nuevo más tarde."
+      );
+      alert(
+        "No se pudo enviar el mensaje. Por favor, inténtelo de nuevo más tarde."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="relative pb-[80px] lg:pb-[120px] mt-[40px]">
@@ -41,6 +111,7 @@ const ContactSection = () => {
                   <form
                     id="contact-form"
                     className="grid grid-cols-1 gap-[15px]"
+                    onSubmit={handleSubmit}
                   >
                     <div>
                       <label
@@ -55,6 +126,9 @@ const ContactSection = () => {
                           id="name"
                           placeholder="Nombre Completo"
                           className="border-[1px] border-[#65676B] border-opacity-30 w-full rounded-[4px] outline-none p-[13px_20px_13px_45px]"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
                         />
                         <i className="flaticon-user absolute top-[30%] left-[15px]"></i>
                       </div>
@@ -72,6 +146,9 @@ const ContactSection = () => {
                           id="email"
                           placeholder="Correo Electrónico"
                           className="border-[1px] border-[#65676B] border-opacity-30 w-full rounded-[4px] outline-none p-[13px_20px_13px_45px]"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
                         />
                         <i className="flaticon-envelope absolute top-[32%] left-[15px]"></i>
                       </div>
@@ -88,6 +165,9 @@ const ContactSection = () => {
                           id="msg"
                           className="border-[1px] border-[#65676B] border-opacity-30 w-full rounded-[4px] outline-none p-[14px_20px_14px_45px] resize-none h-[100px]"
                           placeholder="Mensaje"
+                          value={formData.msg}
+                          onChange={handleChange}
+                          required
                         ></textarea>
                         <img
                           src="/assets/images/icon/message.svg"
@@ -101,9 +181,25 @@ const ContactSection = () => {
                     <button
                       type="submit"
                       className="bg-[#00beba] rounded-[6px] !text-sm !p-[12px_35px] fill w-full text-white"
+                      disabled={isLoading}
                     >
-                      Enviar Mensaje
+                      {isLoading ? "Enviando..." : "Enviar Mensaje"}
                     </button>
+
+                    {/* Error Message */}
+                    {error && (
+                      <p className="text-red-500 text-sm text-center mt-4">
+                        {error}
+                      </p>
+                    )}
+
+                    {/* Success Message */}
+                    {success && (
+                      <p className="text-green-500 text-sm text-center mt-4">
+                        ¡Gracias por contactarnos! Nos pondremos en contacto
+                        contigo pronto.
+                      </p>
+                    )}
                   </form>
                 </div>
               </div>
