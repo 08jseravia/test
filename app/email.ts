@@ -36,9 +36,7 @@ export const enviarCorreo = async ({
 
   try {
     await transportador.sendMail(opcionesCorreo);
-    console.log("Correo enviado con éxito");
   } catch (error) {
-    console.error("Error al enviar el correo");
     throw new Error("Error al enviar el correo");
   }
 };
