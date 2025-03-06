@@ -29,9 +29,70 @@ const ContactSection = () => {
     setSuccess(false);
 
     const emailContent = `
-      Name: ${formData.name}
-      Email: ${formData.email}
-      Message: ${formData.msg}
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Nuevo Mensaje de Contacto</title>
+          <style>
+              body {
+                  font-family: Arial, sans-serif;
+                  background-color: #f4f4f4;
+                  margin: 0;
+                  padding: 0;
+              }
+              .container {
+                  max-width: 600px;
+                  margin: 20px auto;
+                  background-color: #ffffff;
+                  border-radius: 8px;
+                  overflow: hidden;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              }
+              .header {
+                  background-color: #205172;
+                  color: #ffffff;
+                  padding: 20px;
+                  text-align: center;
+              }
+              .header h1 {
+                  margin: 0;
+                  font-size: 24px;
+              }
+              .content {
+                  padding: 20px;
+                  color: #333333;
+              }
+              .content p {
+                  margin: 10px 0;
+                  line-height: 1.6;
+              }
+              .footer {
+                  background-color: #00beba;
+                  color: #ffffff;
+                  text-align: center;
+                  padding: 10px;
+                  font-size: 14px;
+              }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <div class="header">
+                  <h1>Nuevo Mensaje de Contacto</h1>
+              </div>
+              <div class="content">
+                  <p><strong>Nombre:</strong> ${formData.name}</p>
+                  <p><strong>Correo electrónico:</strong> ${formData.email}</p>
+                  <p><strong>Mensaje:</strong> ${formData.msg}</p>
+              </div>
+              <div class="footer">
+                  <p>Gracias por contactarnos. ¡Nos pondremos en contacto contigo pronto!</p>
+              </div>
+          </div>
+      </body>
+      </html>
     `;
 
     try {
@@ -43,7 +104,7 @@ const ContactSection = () => {
         body: JSON.stringify({
           to: process.env.NEXT_PUBLIC_ADMIN_EMAIL, // Replace with the admin email
           subject: "Nuevo envío del formulario de contacto",
-          text: emailContent,
+          html: emailContent,
         }),
       });
 
@@ -60,9 +121,7 @@ const ContactSection = () => {
 
       // Show success message
       setSuccess(true);
-      alert("¡Gracias por contactarnos!");
     } catch (error) {
-      console.error("Error sending email:", error);
       setError(
         "No se pudo enviar el mensaje. Por favor, inténtelo de nuevo más tarde."
       );

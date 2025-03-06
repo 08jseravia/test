@@ -51,6 +51,9 @@ export default function ReservationForm({
   const [price, setPrice] = useState(
     getPrice(checkIn, checkOut, room.prices.high, room.prices.low) || 0
   );
+  const [submissionStatus, setSubmissionStatus] = useState<
+    "success" | "error" | null
+  >(null);
 
   useEffect(() => {
     const initialPrice =
@@ -166,17 +169,88 @@ export default function ReservationForm({
     try {
       // Prepare the email content
       const emailContent = `
-        Nueva Reservación:
-        Habitación: ${room?.name}
-        Check-in: ${formValues.check__in}
-        Check-out: ${formValues.check__out}
-        Adultos: ${formValues.adult}
-        Correo electrónico: ${formValues.email}
-        Teléfono: ${formValues.phone}
-        Precio Total: ${new Intl.NumberFormat("es-MX", {
-          style: "currency",
-          currency: "MXN",
-        }).format(discountPrice)} MXN
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Nueva Reservación</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f4;
+                    margin: 0;
+                    padding: 0;
+                }
+                .container {
+                    max-width: 600px;
+                    margin: 20px auto;
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+                .header {
+                    background-color: #205172;
+                    color: #ffffff;
+                    padding: 20px;
+                    text-align: center;
+                }
+                .header h1 {
+                    margin: 0;
+                    font-size: 24px;
+                }
+                .content {
+                    padding: 20px;
+                    color: #333333;
+                }
+                .content p {
+                    margin: 10px 0;
+                    line-height: 1.6;
+                }
+                .footer {
+                    background-color: #00beba;
+                    color: #ffffff;
+                    text-align: center;
+                    padding: 10px;
+                    font-size: 14px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>Nueva Reservación</h1>
+                </div>
+                <div class="content">
+                    <p><strong>Habitación:</strong> ${room?.name}</p>
+                    <p><strong>Check-in:</strong> ${formValues.check__in}</p>
+                    <p><strong>Check-out:</strong> ${formValues.check__out}</p>
+                    <p><strong>Adultos:</strong> ${formValues.adult}</p>
+                    <p><strong>Correo electrónico:</strong> ${
+                      formValues.email
+                    }</p>
+                    <p><strong>Teléfono:</strong> ${formValues.phone}</p>
+                    <p><strong>Total sin Descuento:</strong>${new Intl.NumberFormat(
+                      "es-MX",
+                      {
+                        style: "currency",
+                        currency: "MXN",
+                      }
+                    ).format(price)} MXN
+                    </p>
+                    <p><strong>Descuento :</strong>${discount} %</p>
+                    <p><strong>Precio Total:</strong> ${new Intl.NumberFormat(
+                      "es-MX",
+                      { style: "currency", currency: "MXN" }
+                    ).format(discountPrice)} MXN</p>
+                </div>
+                <div class="footer">
+                    <p>Gracias por elegirnos. ¡Esperamos verte pronto!</p>
+                </div>
+            </div>
+        </body>
+        </html>
       `;
 
       // Send the email via the API route
@@ -188,7 +262,7 @@ export default function ReservationForm({
         body: JSON.stringify({
           to: process.env.NEXT_PUBLIC_ADMIN_EMAIL, // Replace with the admin email
           subject: `Nueva Reservación: ${room?.name}`,
-          text: emailContent,
+          html: emailContent,
         }),
       });
 
@@ -196,30 +270,16 @@ export default function ReservationForm({
         throw new Error("Failed to send email");
       }
 
-      // Log the form submission and reset the form
-      console.log("Form submitted successfully:", {
-        ...formValues,
-        room: room?.name,
-        total: price,
-        discount: discount,
-        totalPrice: discountPrice,
-      });
-
       // Reset form fields (optional)
       setCheckIn(new Date().toISOString().split("T")[0]);
       setCheckOut(new Date().toISOString().split("T")[0]);
       setNumberOfPeople(room.person === 2 ? 1 : 2);
-      e.currentTarget.reset(); // Reset the form
+      e?.currentTarget?.reset(); // Reset the form
 
-      // Show success message or redirect
-      alert(
-        "Reservación enviada con éxito. Nos pondremos en contacto contigo pronto."
-      );
+      // Show success message
+      setSubmissionStatus("success");
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert(
-        "Hubo un error al enviar la reservación. Por favor, inténtalo de nuevo."
-      );
+      setSubmissionStatus("error");
     } finally {
       setLoading(false);
     }
@@ -417,6 +477,20 @@ export default function ReservationForm({
             )}
           </button>
         </div>
+
+        {/* Submission Message */}
+        {submissionStatus === "success" && (
+          <div className="text-center text-green-600">
+            Reservación enviada con éxito. Nos pondremos en contacto contigo
+            pronto.
+          </div>
+        )}
+        {submissionStatus === "error" && (
+          <div className="text-center text-red-500">
+            Hubo un error al enviar la reservación. Por favor, inténtalo de
+            nuevo.
+          </div>
+        )}
       </div>
     </form>
   );
