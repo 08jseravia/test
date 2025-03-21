@@ -295,7 +295,26 @@ const ContactSection = () => {
                 >
                   Teléfono: +52 998 411 8355
                 </a>
-                Correo Electrónico: reservaciones@margaritavilleresorts.com.mx
+                Correo Electrónico:
+                reservaciones@margaritavillerivieramaya.com.mx
+              </p>
+            </div>
+            <div>
+              <h4 className="heading text-2xl mb-[15px]">
+                Ubicación del Hotel
+              </h4>
+              <p className="font-glida text-[20px] leading-relaxed">
+                Address: Carretera Cancún - Tulum KM. 27.5, Bahía Petempich,
+                77580 Puerto Morelos, México.
+                <br />
+                <a
+                  className="flex items-center gap-2"
+                  href="tel:52 998 411 8355"
+                >
+                  Telephone: +52 998 411 8355
+                </a>
+                Correo Electrónico:
+                reservaciones@margaritavillerivieramaya.com.mx
               </p>
             </div>
           </div>

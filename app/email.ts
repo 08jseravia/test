@@ -14,7 +14,7 @@ const transportador = nodemailer.createTransport({
   port: parseInt(process.env.SMTP_PORT || "587"), // Puerto SMTP (ejemplo: 587 para TLS)
   secure: process.env.SMTP_SECURE === "true", // true para 465, false para otros puertos
   auth: {
-    user: process.env.SMTP_USER, // Dirección de correo electrónico (ejemplo: reservaciones@margaritavilleresorts.com.mx)
+    user: process.env.SMTP_USER, // Dirección de correo electrónico (ejemplo: reservaciones@margaritavillerivieramaya.com.mx)
     pass: process.env.SMTP_PASSWORD, // Contraseña del correo electrónico
   },
 });
