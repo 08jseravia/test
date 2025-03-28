@@ -66,18 +66,43 @@ const Footer = () => {
           </div>
 
           {/* Contact Us */}
-          <div>
-            <span className="block text-[20px] font-bold text-heading capitalize mb-[20px]">
+          <div className="space-y-5">
+            <span className="block text-2xl font-bold text-heading capitalize">
               Contáctanos
             </span>
-            <ul className="flex flex-col gap-[10px]">
+            <ul className="flex flex-col gap-4">
               <li>
                 <Link
                   href="tel:52 998 411 8355"
-                  className="flex gap-2 items-center"
-                  aria-label="footer__contact"
+                  className="flex items-center gap-3 hover:text-primary transition-colors"
+                  aria-label="Phone number"
                 >
-                  <i className="flaticon-phone-flip"></i> +52 998 411 8355
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z" />
+                  </svg>
+                  +52 998 411 8355
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="mailto:reservaciones@margaritavillerivieramaya.com.mx"
+                  className="flex items-center gap-3 hover:text-primary transition-colors"
+                  aria-label="Email address"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z" />
+                  </svg>
+                  reservaciones@margaritavillerivieramaya.com.mx
                 </Link>
               </li>
             </ul>
