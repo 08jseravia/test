@@ -70,7 +70,7 @@ const roomData = [
       "assets/images/room/two-bedroom-coral-reefer-signature-suite-room.webp",
       "assets/images/room/coral-reefer-signature-suite-rooms-margaritaville-riviera-maya-1.webp",
     ],
-    desc: "Situadas en el centro de la 5ª (última) planta de la propiedad, las espectaculares suites Coral Reefer ofrecen el máximo lujo en un entorno realmente impresionante con unas vistas preciosas al mar. Al entrar en la impresionante sala de estar, los huéspedes descubrirán 3.200 pies cuadrados de impresionantes zonas de estar y comedor interiores y exteriores con un concepto abierto de sala de estar y comedor con capacidad para 8 personas y una zona de bar.",
+    desc: "Situadas en el centro de la 5ª (última) planta de la propiedad, las espectaculares suites Coral Reefer ofrecen el máximo lujo en un entorno realmente impresionante con unas vistas preciosas al mar. Al entrar en la impresionante sala de estar, los huéspedes descubrirán 1.780 pies cuadrados de impresionantes zonas de estar y comedor interiores y exteriores con un concepto abierto de sala de estar y comedor con capacidad para 8 personas y una zona de bar.",
     person: 4,
     roomSize: "1780 ft² | 165 m²",
     prices: {
