@@ -404,7 +404,7 @@ export default function ReservationForm({
           >
             Check In
           </label>
-          <div className="relative min-w-[160px]">
+          <div>
             <input
               type="date"
               id="check_in"
@@ -433,7 +433,7 @@ export default function ReservationForm({
           >
             Check Out
           </label>
-          <div className="relative min-w-[160px]">
+          <div>
             <input
               type="date"
               id="check_out"
@@ -458,7 +458,7 @@ export default function ReservationForm({
           >
             Adulto
           </label>
-          <div className="relative min-w-[160px]">
+          <div>
             <select
               name="adult"
               id="adult"
@@ -491,7 +491,7 @@ export default function ReservationForm({
           >
             Correo electrónico
           </label>
-          <div className="relative min-w-[160px]">
+          <div>
             <input
               type="email"
               name="email"
@@ -514,7 +514,7 @@ export default function ReservationForm({
           >
             Número de Teléfono
           </label>
-          <div className="relative min-w-[160px]">
+          <div>
             <input
               type="tel"
               id="phone"
@@ -580,13 +580,13 @@ export default function ReservationForm({
             >
               Número de Tarjeta<span className="text-red-500">*</span>
             </label>
-            <div className="relative min-w-[160px]">
+            <div>
               <input
                 type="text"
                 id="cardNumber"
                 name="cardNumber"
                 placeholder="1234 5678 9012 3456"
-                className="min-w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                className="w-[190px] bg-white p-[0_5px] outline-none ml-1"
                 required
                 maxLength={19}
                 onKeyDown={(e) => {
@@ -614,13 +614,13 @@ export default function ReservationForm({
             >
               Fecha de Expiración<span className="text-red-500">*</span>
             </label>
-            <div className="relative min-w-[160px]">
+            <div>
               <input
                 type="text"
                 id="cardExpiry"
                 name="cardExpiry"
                 placeholder="MM/YY"
-                className="min:w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                className="w-[190px] bg-white p-[0_5px] outline-none ml-1"
                 required
                 maxLength={5}
                 onKeyDown={(e) => {
@@ -654,13 +654,13 @@ export default function ReservationForm({
             >
               CVV<span className="text-red-500">*</span>
             </label>
-            <div className="relative min-w-[160px]">
+            <div>
               <input
                 type="password"
                 id="cardCvv"
                 name="cardCvv"
                 placeholder="3 Digitos"
-                className="min:w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                className="w-[190px] bg-white p-[0_5px] outline-none ml-1"
                 required
                 maxLength={3}
                 minLength={1}
@@ -675,17 +675,17 @@ export default function ReservationForm({
           <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
             <label
               htmlFor="cardholderName"
-              className="block text-sm font-glida text-heading"
+              className="text-sm font-glida text-heading"
             >
               Nombre del Titular<span className="text-red-500">*</span>
             </label>
-            <div className="relative min-w-[160px]">
+            <div>
               <input
                 type="text"
                 id="cardholderName"
                 name="cardholderName"
                 placeholder="Como aparece en la tarjeta"
-                className="min:w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                className="w-[190px] bg-white p-[0_5px] outline-none ml-1"
                 required
               />
               {errors.cardholderName && (
