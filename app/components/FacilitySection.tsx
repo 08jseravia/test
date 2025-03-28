@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const FacilitySection = () => {
@@ -77,6 +78,15 @@ const FacilitySection = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="flex w-full items-center justify-center mt-10">
+        <Link
+          href="experiencias"
+          className="anim-4 theme-btn fill btn-style !border-0 !py-[10px] rounded-[6px] p-4 text-white"
+          style={{ backgroundColor: "#00beba" }}
+        >
+          Explorar Experiencias
+        </Link>
       </div>
     </div>
   );

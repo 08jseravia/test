@@ -25,15 +25,15 @@ const Header = () => {
               <Link href="/">
                 <p className="text-white hover:text-gray-300">Inicio</p>
               </Link>
-              {/* <Link href="/about">
-                <p className="text-white hover:text-gray-300">About</p>
-              </Link> */}
+              <Link href="/restaurante">
+                <p className="text-white hover:text-gray-300">Restaurantes</p>
+              </Link>
               <Link href="/preguntas">
                 <p className="text-white hover:text-gray-300">Preguntas</p>
               </Link>
-              {/* <Link href="/services">
+              <Link href="/servicios">
                 <p className="text-white hover:text-gray-300">Servicios</p>
-              </Link> */}
+              </Link>
               <Link href="/contacto">
                 <p className="text-white hover:text-gray-300">Contacto</p>
               </Link>
@@ -99,12 +99,17 @@ const Header = () => {
             <Link href="/">
               <p className="block text-white hover:text-gray-300">Inicio</p>
             </Link>
+            <Link href="/restaurante">
+              <p className="block text-white hover:text-gray-300">
+                Restaurantes
+              </p>
+            </Link>
             <Link href="/preguntas">
               <p className="block text-white hover:text-gray-300">Preguntas</p>
             </Link>
-            {/* <Link href="/services">
+            <Link href="/servicios">
               <p className="block text-white hover:text-gray-300">Servicios</p>
-            </Link> */}
+            </Link>
             <Link href="/contacto">
               <p className="block text-white hover:text-gray-300">Contacto</p>
             </Link>

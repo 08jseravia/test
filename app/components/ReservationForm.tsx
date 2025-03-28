@@ -18,6 +18,10 @@ interface Reservation {
   adult: string;
   email: string;
   phone: string;
+  cardNumber: string;
+  cardExpiry: string;
+  cardCvv: string;
+  cardholderName: string;
 }
 
 interface FormErrors {
@@ -26,6 +30,10 @@ interface FormErrors {
   adult?: string;
   email?: string;
   phone?: string;
+  cardNumber?: string;
+  cardExpiry?: string;
+  cardCvv?: string;
+  cardholderName?: string;
 }
 
 export default function ReservationForm({
@@ -143,6 +151,29 @@ export default function ReservationForm({
     } else if (!/^\d{10,13}$/.test(formData.phone)) {
       newErrors.phone =
         "El número de teléfono debe tener entre 10 y 13 dígitos.";
+    }
+
+    // Credit Card Validation
+    if (!formData.cardNumber) {
+      newErrors.cardNumber = "Card number is required.";
+    } else if (!/^\d{16}$/.test(formData.cardNumber)) {
+      newErrors.cardNumber = "Card number must be 16 digits.";
+    }
+
+    if (!formData.cardExpiry) {
+      newErrors.cardExpiry = "Expiration date is required.";
+    } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.cardExpiry)) {
+      newErrors.cardExpiry = "Expiration date must be in MM/YY format.";
+    }
+
+    if (!formData.cardCvv) {
+      newErrors.cardCvv = "CVV is required.";
+    } else if (!/^\d{3,4}$/.test(formData.cardCvv)) {
+      newErrors.cardCvv = "CVV must be 3 or 4 digits.";
+    }
+
+    if (!formData.cardholderName) {
+      newErrors.cardholderName = "Cardholder name is required.";
     }
 
     return newErrors;
@@ -463,6 +494,142 @@ export default function ReservationForm({
           </span>
         </div>
 
+        <div className="mt-10 space-y-2">
+          <h3
+            className="heading text-2xl text-center mb-[10px]"
+            style={{ fontFamily: "GreatVibes" }}
+          >
+            Información de la tarjeta de crédito
+          </h3>
+          {/* Credit Card Number */}
+          <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
+            <label
+              htmlFor="cardNumber"
+              className="block text-sm font-glida text-heading"
+            >
+              Número de Tarjeta<span className="text-red-500">*</span>
+            </label>
+            <div className="relative min-w-[160px]">
+              <input
+                type="text"
+                id="cardNumber"
+                name="cardNumber"
+                placeholder="1234 5678 9012 3456"
+                className="min-w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                required
+                maxLength={19} // 16 digits + 3 spaces
+                onKeyDown={(e) => {
+                  // Only allow numbers, backspace, tab, and arrow keys
+                  if (!/[0-9]|Backspace|Tab|ArrowLeft|ArrowRight/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={(e) => {
+                  // Remove all non-digit characters
+                  const value = e.target.value.replace(/\D/g, "");
+
+                  // Add space every 4 digits
+                  const formattedValue = value.replace(/(\d{4})(?=\d)/g, "$1 ");
+
+                  // Update the input value
+                  e.target.value = formattedValue;
+                }}
+              />
+              {errors.cardNumber && (
+                <p className="text-red-500 text-sm">{errors.cardNumber}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Expiration Date */}
+          <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
+            <label
+              htmlFor="cardExpiry"
+              className="block text-sm font-glida text-heading"
+            >
+              Fecha de Expiración<span className="text-red-500">*</span>
+            </label>
+            <div className="relative min-w-[160px]">
+              <input
+                type="text"
+                id="cardExpiry"
+                name="cardExpiry"
+                placeholder="MM/YY"
+                className="min:w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                required
+                maxLength={5}
+                onKeyDown={(e) => {
+                  // Only allow numbers and backspace
+                  if (!/[0-9]|Backspace/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, "");
+                  if (value.length > 2) {
+                    e.target.value = `${value.substring(
+                      0,
+                      2
+                    )}/${value.substring(2, 4)}`;
+                  } else {
+                    e.target.value = value;
+                  }
+                }}
+              />
+              {errors.cardExpiry && (
+                <p className="text-red-500 text-sm">{errors.cardExpiry}</p>
+              )}
+            </div>
+          </div>
+
+          {/* CVV */}
+          <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
+            <label
+              htmlFor="cardCvv"
+              className="block text-sm font-glida text-heading"
+            >
+              CVV<span className="text-red-500">*</span>
+            </label>
+            <div className="relative min-w-[160px]">
+              <input
+                type="password"
+                id="cardCvv"
+                name="cardCvv"
+                placeholder="3 Digitos"
+                className="min:w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                required
+                maxLength={3}
+                minLength={1}
+              />
+              {errors.cardCvv && (
+                <p className="text-red-500 text-sm">{errors.cardCvv}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Cardholder Name */}
+          <div className="flex justify-between items-center w-full p-[14px_20px] bg-white rounded-[6px]">
+            <label
+              htmlFor="cardholderName"
+              className="block text-sm font-glida text-heading"
+            >
+              Nombre del Titular<span className="text-red-500">*</span>
+            </label>
+            <div className="relative min-w-[160px]">
+              <input
+                type="text"
+                id="cardholderName"
+                name="cardholderName"
+                placeholder="Como aparece en la tarjeta"
+                className="min:w-[160px] bg-white p-[0_5px] outline-none ml-1"
+                required
+              />
+              {errors.cardholderName && (
+                <p className="text-red-500 text-sm">{errors.cardholderName}</p>
+              )}
+            </div>
+          </div>
+        </div>
         {/* Submit Button */}
         <div className="flex justify-center pt-4 pb-6">
           <button
