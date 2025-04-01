@@ -23,7 +23,7 @@ type Room = {
 };
 const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 ">
       <div
         className="swiper-container w-screen"
         style={{ maxWidth: "100%", overflow: "hidden" }}
@@ -49,7 +49,7 @@ const RoomSlider = ({ roomData }: { roomData: Room[] }) => {
           {roomData.map((room, index) => (
             <SwiperSlide key={room.id} className="mb-8">
               <Link href={`/detalles?id=${room.id}`}>
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-full w-[87%] lg:w-full">
+                <div className="rounded-lg shadow-lg overflow-hidden flex flex-col h-full w-[87%] lg:w-full">
                   {/* Image Section */}
                   <div className="relative h-48 w-full">
                     <img

@@ -7,7 +7,7 @@ const ExperienciasExtraordinarias = () => {
       <div className=" py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <h2
-            className="text-4xl sm:text-5xl text-blue-900 mb-6"
+            className="text-3xl sm:text-5xl text-blue-900 mb-6"
             style={{ fontFamily: "GreatVibes" }}
           >
             Experiencias Extraordinarias Te Esperan
@@ -26,7 +26,7 @@ const ExperienciasExtraordinarias = () => {
           </p>
 
           <h3
-            className="text-4xl sm:text-5xl text-blue-900 mt-10 mb-6"
+            className="text-3xl sm:text-5xl text-blue-900 mt-10 mb-6"
             style={{ fontFamily: "GreatVibes" }}
           >
             Island Reserve Inclusive®

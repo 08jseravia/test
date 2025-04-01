@@ -13,16 +13,10 @@ const RoomsSection = () => {
   }, []);
 
   return (
-    <div className="relative py-[80px] lg:py-[120px]">
-      <div className="container mx-auto px-4">
+    <div className="relative py-[80px] lg:py-[10px]">
+      <div className="container mx-auto p-4 ">
         <div className="flex justify-between items-center flex-wrap gap-[30px] lg:gap-0 mb-[40px]">
           <div>
-            <span
-              style={{ color: "#00beba" }}
-              className="text-xl heading-6 relative mb-[15px] left-[65px] text-primary inline-block before:absolute before:left-[-65px] before:bottom-[50%] before:w-[52px] before:h-[12px] before:bg-no-repeat before:bg-[url('/images/shape/section__style__two.html')] before:transform before:translate-y-2/4"
-            >
-              Habitación
-            </span>
             <h2
               className="text-4xl md:text-5xl capitalize font-greatvibes"
               style={{ fontFamily: "GreatVibes" }}

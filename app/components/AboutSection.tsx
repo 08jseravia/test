@@ -33,10 +33,10 @@ const AboutSection = () => {
             <div className="relative wow fadeInUp">
               <div className="jara-mask-1 jarallax sm:min-h-[580px] sm:min-w-[485px]">
                 <Image
-                  src="/assets/images/about/about-1.webp"
+                  src="/assets/images/about/about-1.png"
                   alt="About Image"
                   className="jarallax-img"
-                  width={485}
+                  width={1000}
                   height={580}
                 />
               </div>

@@ -8,10 +8,10 @@ const HotelExperience = () => {
           {/* Image Section */}
           <div className="flex flex-wrap lg:flex-nowrap">
             <Image
-              className="rounded-[10px]"
+              className="rounded-[10px] h-[550px]"
               height={648}
-              width={428}
-              src="/assets/images/pages/resturant/004.webp"
+              width={1000}
+              src="/assets/images/pages/resturant/004.jpg"
               alt="Imagen de la experiencia del hotel 1"
             />
           </div>

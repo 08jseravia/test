@@ -6,12 +6,6 @@ const FacilitySection = () => {
     <div className="relative bg-[#f1f1f1] py-[80px] lg:py-[120px]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-[40px]">
-          <span
-            style={{ color: "#00beba" }}
-            className="subtitle font-glida text-lg font-semibold text-primary"
-          >
-            Instalaciones
-          </span>
           <h2
             className="text-4xl sm:text-5xl mt-[15px] "
             style={{ fontFamily: "GreatVibes" }}

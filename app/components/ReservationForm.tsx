@@ -704,7 +704,7 @@ export default function ReservationForm({
             {loading ? (
               <ClipLoader size={24} color="#fff" />
             ) : (
-              "Confirmar Reservaciones"
+              "Confirmar Reservación"
             )}
           </button>
         </div>

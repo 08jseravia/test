@@ -49,12 +49,12 @@ const NuestroServicio = () => {
                 src={service.image}
                 alt={service.title}
                 style={{ height: 605 }}
-                width={300}
+                width={1200}
                 height={605}
-                className="w-full h-auto"
+                className="w-full md:w-[700px] h-auto"
               />
             </div>
-            <div className="max-w-lg">
+            <div>
               <h2
                 className="text-4xl sm:text-5xl mt-2 mb-4"
                 style={{ fontFamily: "GreatVibes" }}

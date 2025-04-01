@@ -44,7 +44,7 @@ const ActivitiesCarousel = () => {
     <section className="py-8 lg:py-16 delay-100 duration-1000 opacity-100 transition-all translate-y-0">
       <div className="c-container px-6 md:px-8 lg:px-12 2xl:px-20 mx-auto">
         {/* Title Section */}
-        <div className="mb-6 empty:hidden xl:mb-10 grid-cols-1 items-center empty:hidden 2xl:grid 2xl:grid-cols-[1fr_auto_1fr] 2xl:gap-12">
+        <div className="mb-6 empty:hidden xl:mb-10 grid-cols-1 items-center 2xl:grid 2xl:grid-cols-[1fr_auto_1fr] 2xl:gap-12">
           <div className="text-center 2xl:col-start-2">
             <h2
               className="text-[36px] text-blue-900 leading-tight md:text-[44px] lg:text-[48px] font-[var(--headings-font-weight)] bg-clip-text font-alt bg-[url:var(--headings-bg-image)] [text-transform:var(--headings-text-transform)]  inline-block max-2xl:mb-3"
@@ -70,7 +70,7 @@ const ActivitiesCarousel = () => {
           >
             {slides.map((slide) => (
               <SwiperSlide key={`activity-${slide.id}`}>
-                <div className="relative h-[80vh] lg:aspect-[183/115] lg:h-auto">
+                <div className="relative h-[70vh] sm:h-[80vh] lg:aspect-[183/115] lg:h-auto">
                   <div
                     className="absolute right-0 top-[-1px] z-10 hidden aspect-[3/1] bg-[white] lg:block"
                     style={{
