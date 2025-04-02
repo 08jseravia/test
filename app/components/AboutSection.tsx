@@ -17,14 +17,17 @@ const AboutSection = () => {
               La máxima escapada solo para adultos
             </h2>
             <p className="text-sm max-w-[645px] mb-[45px]">
-              Disfruta de la máxima escapada con todo incluido solo para
-              adultos, con servicio de cinco estrellas sin complicaciones.
-              Experimenta Margaritaville Island Reserve Resort Riviera Maya, con
-              la primera cervecería LandShark en la playa. Disfruta de
-              gastronomía de cinco estrellas, servicio incomparable, comodidades
-              de lujo, espectaculares shows y experiencias y actividades
-              inolvidables. Y un montón de espacio para tomar el sol junto a la
-              piscina con buena vibra isleña y una margarita en mano.
+              Descubre el equilibrio perfecto entre lujo y relajación en
+              Margaritaville Island Reserve Riviera Maya, un exclusivo resort
+              todo incluido diseñado para disfrutar sin preocupaciones. Disfruta
+              de una experiencia de cinco estrellas con gastronomía excepcional,
+              servicio inigualable y comodidades de primer nivel. Sumérgete en
+              la esencia isleña con la primera cervecería LandShark en la playa,
+              espectaculares shows en vivo y experiencias únicas pensadas para
+              hacer de cada momento algo inolvidable. Relájate junto a la
+              piscina con una margarita en mano o explora las maravillas del
+              Caribe en un entorno que redefine el concepto de escapada
+              perfecta.
             </p>
           </div>
 
@@ -33,7 +36,7 @@ const AboutSection = () => {
             <div className="relative wow fadeInUp">
               <div className="jara-mask-1 jarallax sm:min-h-[580px] sm:min-w-[485px]">
                 <Image
-                  src="/assets/images/about/about-1.png"
+                  src="/assets/images/about/about-1.jpg"
                   alt="About Image"
                   className="jarallax-img"
                   width={1000}
