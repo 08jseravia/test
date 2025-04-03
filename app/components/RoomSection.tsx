@@ -13,7 +13,7 @@ const RoomsSection = () => {
   }, []);
 
   return (
-    <div className="relative py-[80px] lg:py-[10px]">
+    <div className="relative pt-[80px] lg:pt-[10px]">
       <div className="container mx-auto p-4 ">
         <div className="flex justify-between items-center flex-wrap gap-[30px] lg:gap-0 mb-[40px]">
           <div>
