@@ -6,6 +6,7 @@ import AboutSection from "./components/AboutSection";
 import FacilitySection from "./components/FacilitySection";
 import RoomSlider from "./components/RoomSection";
 import { FormEvent, useState } from "react";
+import PropertyDetails from "./components/PropertyDetails";
 
 export default function Home() {
   const [isPopupVisible, setIsPopupVisible] = useState(true);
@@ -279,6 +280,7 @@ export default function Home() {
       <AboutSection />
       <FacilitySection />
       <RoomSlider />
+      <PropertyDetails />
       <Footer />
     </>
   );
