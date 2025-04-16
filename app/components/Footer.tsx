@@ -91,7 +91,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="mailto:reservaciones@margaritavillerivieramaya.com.mx"
-                  className="flex items-center gap-3 hover:text-primary transition-colors"
+                  className="flex gap-3 hover:text-primary transition-colors break-all"
                   aria-label="Email address"
                 >
                   <svg
