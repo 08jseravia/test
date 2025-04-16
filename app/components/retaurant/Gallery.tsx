@@ -10,9 +10,6 @@ const Gallery = () => {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-[45px]">
-          <span className="text-primary text-lg font-semibold">
-            Restaurante
-          </span>
           <h2
             className="text-4xl sm:text-5xl  mt-[15px] mb-[15px]"
             style={{ fontFamily: "GreatVibes" }}
