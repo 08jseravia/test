@@ -44,17 +44,18 @@ const NuestroServicio = () => {
               index % 2 === 1 ? "lg:flex-row-reverse" : ""
             } my-12`}
           >
-            <div className="lg:min-w-[535px] lg:min-h-[535px] w-full h-auto">
-              <Image
-                src={service.image}
-                alt={service.title}
-                style={{ height: 605 }}
-                width={1200}
-                height={605}
-                className="w-full md:w-[700px] h-auto"
-              />
+            <div className="lg:w-1/2 w-full">
+              <div className="relative aspect-[4/3] lg:aspect-video">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover rounded-lg"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
             </div>
-            <div>
+            <div className="lg:w-1/2 w-full">
               <h2
                 className="text-4xl sm:text-5xl mt-2 mb-4"
                 style={{ fontFamily: "GreatVibes" }}
