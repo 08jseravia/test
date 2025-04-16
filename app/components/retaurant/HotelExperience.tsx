@@ -8,7 +8,7 @@ const HotelExperience = () => {
           {/* Image Section */}
           <div className="flex flex-wrap lg:flex-nowrap">
             <Image
-              className="rounded-[10px] h-[550px]"
+              className="rounded-[10px] h-auto md:h-[550px]"
               height={648}
               width={1000}
               src="/assets/images/pages/resturant/004.jpg"
@@ -18,9 +18,6 @@ const HotelExperience = () => {
 
           {/* Content Section */}
           <div className="max-w-[700px]">
-            <span className="relative mb-[15px] inline-block text-primary text-lg font-semibold">
-              Experiencia en el Hotel
-            </span>
             <h2
               className="text-4xl sm:text-5xl  mb-[20px]"
               style={{ fontFamily: "GreatVibes" }}
