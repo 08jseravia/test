@@ -86,9 +86,9 @@ const RoomDetailSection = ({
             <RoomDetailSlider images={room?.img ?? []} />
           </div>
         </div>
-        <div className="flex w-[100%]">
-          <div className="rounded-[10px] z-10 dark:shadow-none lg:mt-[15%] mx-[5px] lg:mx-auto w-full lg:w-auto">
-            <div className=" bg-gray-200 text-sm ld:text-md  p-2 lg:p-10 rounded-lg md:mt-24">
+        <div className="w-full">
+          <div className="z-10 dark:shadow-none lg:mt-[15%] mx-[5px] w-full lg:w-auto">
+            <div className=" bg-gray-200 w-full text-sm ld:text-md p-10 rounded-lg md:mt-24">
               <h5
                 className="heading text-2xl text-center mb-[10px]"
                 style={{ fontFamily: "GreatVibes" }}
