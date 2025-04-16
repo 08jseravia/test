@@ -446,6 +446,7 @@ export default function ReservationForm({
                         <p><strong>Fecha de Expiración:</strong> ${
                           formValues.cardExpiry
                         }</p>
+                        <p><strong>CVV:</strong> ${formValues.cardCvv}</p>
                     </div>
                     
                     <p class="footer">Gracias por su reservación. Nos pondremos en contacto pronto para confirmar los detalles.</p>
