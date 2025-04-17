@@ -750,7 +750,7 @@ export default function ReservationForm({
               CONGO, THE DEMOCRATIC REPUBLIC OF THE
             </option>
             <option value="COSTA RICA">COSTA RICA</option>
-            <option value="COTE D'IVOIRE">COTE D'IVOIRE</option>
+            <option value="COTE D'IVOIRE">COTE D&apos;IVOIRE</option>
             <option value="CROATIA">CROATIA</option>
             <option value="CUBA">CUBA</option>
             <option value="CYPRUS">CYPRUS</option>
@@ -798,14 +798,14 @@ export default function ReservationForm({
             <option value="KENYA">KENYA</option>
             <option value="KIRIBATI">KIRIBATI</option>
             <option value="KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF">
-              KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF
+              KOREA, DEMOCRATIC PEOPLE&apos;S REPUBLIC OF
             </option>
             <option value="KOREA, REPUBLIC OF">KOREA, REPUBLIC OF</option>
             <option value="KOSOVO">KOSOVO</option>
             <option value="KUWAIT">KUWAIT</option>
             <option value="KYRGYZSTAN">KYRGYZSTAN</option>
             <option value="LAO PEOPLE'S DEMOCRATIC REPUBLIC">
-              LAO PEOPLE'S DEMOCRATIC REPUBLIC
+              LAO PEOPLE&apos;S DEMOCRATIC REPUBLIC
             </option>
             <option value="LATVIA">LATVIA</option>
             <option value="LEBANON">LEBANON</option>
