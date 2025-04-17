@@ -56,7 +56,29 @@ interface FormErrors {
 const ErrorModal = ({ onClose }: { onClose: () => void }) => (
   <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
     <div className="bg-transparent text-center max-w-md w-full">
-      <div className="inline-block bg-white bg-opacity-90 rounded-lg p-8">
+      <div className="relative inline-block bg-white bg-opacity-90 rounded-lg p-8">
+        {/* Close button (X) at top right */}
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        {/* Error icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-16 w-16 mx-auto text-red-500 mb-4"
@@ -71,19 +93,35 @@ const ErrorModal = ({ onClose }: { onClose: () => void }) => (
             d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <h3 className="text-xl font-bold text-gray-800 mb-2">
-          No se pudo procesar
-        </h3>
+
+        {/* Error message */}
+        <h3 className="text-xl font-bold text-gray-800 mb-2">Error</h3>
         <p className="text-gray-600 mb-6">
-          No podemos procesar su reservación en este momento. Por favor,
-          inténtelo de nuevo más tarde.
+          Ocurrió un error al procesar tu pago, favor de comunicarse a atención
+          al cliente.
         </p>
-        <button
-          onClick={onClose}
-          className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-6 rounded-lg transition duration-200"
+
+        {/* Call button with icon */}
+        <a
+          href="callto:52 998 411 8355"
+          className="inline-flex items-center justify-center gap-2 bg-[#00beba] hover:bg-[#009c9a] text-white font-medium py-2 px-4 rounded-lg transition duration-200"
         >
-          Entendido
-        </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            />
+          </svg>
+          Llamar ahora
+        </a>
       </div>
     </div>
   </div>
