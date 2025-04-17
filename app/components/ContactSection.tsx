@@ -291,7 +291,7 @@ const ContactSection = () => {
                 Horario de Atención: Lunes – Domingo <br />
                 <a
                   className="flex items-center gap-2"
-                  href="tel:52 998 411 8355"
+                  href="tel:+52 998 411 8355"
                 >
                   Teléfono: +52 998 411 8355
                 </a>
@@ -309,7 +309,7 @@ const ContactSection = () => {
                 <br />
                 <a
                   className="flex items-center gap-2"
-                  href="tel:52 998 411 8355"
+                  href="tel:+52 998 411 8355"
                 >
                   Telephone: +52 998 411 8355
                 </a>

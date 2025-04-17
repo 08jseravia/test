@@ -73,7 +73,7 @@ const Footer = () => {
             <ul className="flex flex-col gap-4">
               <li>
                 <Link
-                  href="tel:52 998 411 8355"
+                  href="tel:+52 998 411 8355"
                   className="flex items-center gap-3 hover:text-primary transition-colors"
                   aria-label="Phone number"
                 >

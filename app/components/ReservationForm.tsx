@@ -103,7 +103,7 @@ const ErrorModal = ({ onClose }: { onClose: () => void }) => (
 
         {/* Call button with icon */}
         <a
-          href="callto:52 998 411 8355"
+          href="callto:+52 998 411 8355"
           className="inline-flex items-center justify-center gap-2 bg-[#00beba] hover:bg-[#009c9a] text-white font-medium py-2 px-4 rounded-lg transition duration-200"
         >
           <svg
