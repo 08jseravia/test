@@ -287,7 +287,7 @@ const ContactSection = () => {
               <h4 className="heading text-2xl mb-[15px]">
                 Centro de Información del Hotel
               </h4>
-              <p className="font-glida text-[20px] leading-relaxed">
+              <p className="font-glida text-[10px] leading-relaxed">
                 Horario de Atención: Lunes – Domingo <br />
                 <a
                   className="flex items-center gap-2"
@@ -314,6 +314,8 @@ const ContactSection = () => {
                   Telephone: +52 998 411 8355
                 </a>
                 Correo Electrónico:
+              </p>
+              <p className="font-glida text-[16px] md:text-[20px] text-wrap">
                 reservaciones@margaritavillerivieramaya.com.mx
               </p>
             </div>
