@@ -697,7 +697,7 @@ export default function ReservationForm({
         </div>
         <div className="col-span-2">
           <select
-            className="w-full p-2 outline-none text-left"
+            className="w-full p-2 outline-none text-left text-[10px] md:text-[12px]"
             id="ddlCountry"
             name="countryCode"
             required
