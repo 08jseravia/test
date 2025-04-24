@@ -38,17 +38,17 @@ function getPrice(
   // Define the date ranges for the current year
   const dateRanges = [
     {
-      start: new Date(`${currentYear}-12-05`),
+      start: new Date(`${currentYear}-12-20`),
       end: new Date(`${currentYear + 1}-01-07`),
-    }, // diciembre 5 - enero 7 (next year)
+    }, // diciembre 20 - enero 7 (next year)
     {
-      start: new Date(`${currentYear}-04-13`),
-      end: new Date(`${currentYear}-04-19`),
-    }, // abril 13 - abril 19
+      start: new Date(`${currentYear}-04-14`),
+      end: new Date(`${currentYear}-04-25`),
+    }, // abril 14 - abril 25
     {
-      start: new Date(`${currentYear}-06-20`),
-      end: new Date(`${currentYear}-08-20`),
-    }, // junio 20 - agosto 20
+      start: new Date(`${currentYear}-06-15`),
+      end: new Date(`${currentYear}-08-15`),
+    }, // junio 15 - agosto 15
   ];
 
   // Convert checkIn and checkOut to Date objects
