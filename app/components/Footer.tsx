@@ -61,7 +61,7 @@ const Footer = () => {
               <li>Estacionamiento</li>
               <li>Servicio a la Habitación</li>
               <li>Wi-Fi Gratis</li>
-              <li>Servicio de Conserjería</li>
+              <li>Servicio de Mayordomo</li>
             </ul>
           </div>
 
