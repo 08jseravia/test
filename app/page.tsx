@@ -230,6 +230,8 @@ export default function Home() {
                       required
                       value={formData.phone}
                       onChange={handleChange}
+                      minLength={10}
+                      maxLength={13}
                     />
                     <i className="flaticon-phone absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400"></i>
                   </div>
@@ -245,7 +247,7 @@ export default function Home() {
                   >
                     Al registrarse, dejando su nombre, correo electrónico y
                     número de teléfono, usted acepta recibir comunicaciones y
-                    promociones de Margaritaville Riviera Cancún. Además,
+                    promociones de Margaritaville Hotels and Resorts. Además,
                     autoriza el uso de su información para contactarlo a través
                     de nuestras plataformas asociadas, conforme a nuestra
                     política de privacidad.
