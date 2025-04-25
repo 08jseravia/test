@@ -296,7 +296,7 @@ const ContactSection = () => {
                   Teléfono: +52 998 411 8355
                 </a>
                 <span className="block">Correo Electrónico:</span>
-                <span className=" text-[17.5px] md:text-[20px]">
+                <span className=" text-[15px] md:text-[20px]">
                   reservaciones@margaritavillerivieramaya.com.mx
                 </span>
               </p>
@@ -317,7 +317,7 @@ const ContactSection = () => {
                 </a>
                 Correo Electrónico:
               </p>
-              <p className="font-glida text-[17.5px] md:text-[20px] text-wrap">
+              <p className="font-glida text-[15] md:text-[20px] text-wrap">
                 reservaciones@margaritavillerivieramaya.com.mx
               </p>
             </div>
