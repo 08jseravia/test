@@ -960,7 +960,7 @@ export default function ReservationForm({
         </div>
         <div className="col-span-1">
           <input
-            placeholder="CÓDIGO POSTAL*"
+            placeholder="CP*"
             type="text"
             id="codigo"
             className="w-full p-2 outline-none text-left"
