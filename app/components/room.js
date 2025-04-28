@@ -20,8 +20,8 @@ export const roomData = [
         person: 2,
         roomSize: "614 ft² | 57 m²",
         prices: {
-          high: 10005,
-          low: 9017,
+          high: 5657.3,
+          low: 5016.83,
           range: {
             low: "2025-04-13",
             high: "2025-04-19",
@@ -38,8 +38,8 @@ export const roomData = [
         person: 2,
         roomSize: "463 ft² | 43 m²",
         prices: {
-          high: 8446,
-          low: 7367,
+          high: 4453.35,
+          low: 3813.15,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -60,8 +60,8 @@ export const roomData = [
         person: 2,
         roomSize: "452 ft² | 42 m²",
         prices: {
-          high: 5400,
-          low: 4500,
+          high: 4216.3,
+          low: 3575.83,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -86,8 +86,8 @@ export const roomData = [
         person: 4,
         roomSize: "1780 ft² | 165 m²",
         prices: {
-          high: 9000,
-          low: 7500,
+          high: 28549.4,
+          low: 28339.03,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -105,8 +105,8 @@ export const roomData = [
         person: 2,
         roomSize: "678 ft² | 63 m²",
         prices: {
-          high: 17783.33,
-          low: 16809,
+          high: 23940.95,
+          low: 23730.3,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -128,8 +128,8 @@ export const roomData = [
         person: 2,
         roomSize: "463 ft² | 43 m²",
         prices: {
-          high: 6428,
-          low: 5843,
+          high: 3795.28,
+          low: 3095.4,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -150,8 +150,8 @@ export const roomData = [
         person: 2,
         roomSize: "452 ft² | 42 m²",
         prices: {
-          high: 4400,
-          low: 3720,
+          high: 3735.88,
+          low: 3083.58,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -166,8 +166,8 @@ export const roomData = [
         person: 3,
         roomSize: "452 ft² | 42 m²",
         prices: {
-          high: 4200,
-          low: 3520,
+          high: 3927.0,
+          low: 3215.58,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -182,8 +182,8 @@ export const roomData = [
         person: 2,
         roomSize: "678 ft² | 63 m²",
         prices: {
-          high: 7800,
-          low: 6500,
+          high: 5902.88,
+          low: 5262.4,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -201,8 +201,8 @@ export const roomData = [
         person: 2,
         roomSize: "463 ft² | 43m²",
         prices: {
-          high: 7200,
-          low: 6000,
+          high: 5187.6,
+          low: 4547.13,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -225,8 +225,8 @@ export const roomData = [
         person: 2,
         roomSize: "614 ft² | 57 m²",
         prices: {
-          high: 6600,
-          low: 5500,
+          high: 4631.28,
+          low: 3991.08,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -245,8 +245,8 @@ export const roomData = [
         person: 2,
         roomSize: "474 ft² | 44 m²",
         prices: {
-          high: 6000,
-          low: 5000,
+          high: 4512.75,
+          low: 3872.28,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
@@ -268,8 +268,8 @@ export const roomData = [
         person: 2,
         roomSize: "452 ft² | 42 m²",
         prices: {
-          high: 4800,
-          low: 4000,
+          high: 3842.58,
+          low: 3202.1,
           range: {
             low: "2025-06-20",
             high: "2025-08-20",
