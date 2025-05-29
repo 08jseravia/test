@@ -5,6 +5,7 @@ import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import RoomDetailSection from "@/app/components/RoomDetailSection";
 import { roomData } from "@/app/components/room";
+import Script from "next/script";
 
 type Room = {
   id: number;
@@ -40,6 +41,22 @@ const RoomDetails = () => {
 
   return (
     <>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=AW-16881320456"
+      />
+      <Script
+        id="google-ads-config"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16881320456');
+            `,
+        }}
+      />
       <Header />
       <RoomDetailSection room={findRoomById(paramId) as Room} discount={25} />
       <Footer />
